@@ -101,6 +101,13 @@ const first = [{
         icon: 'icon-biaodan',
         meta: {},
         children: []
+    }, {
+        id: 10,
+        label: "select联动",
+        href: '/select/index',
+        icon: 'icon-biaodan',
+        meta: {},
+        children: []
     }]
 }, {
     id: 7,

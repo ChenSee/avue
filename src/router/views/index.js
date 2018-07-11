@@ -107,6 +107,15 @@ export default [{
         component: _import('forms/index', 'views')
     }]
 }, {
+    path: '/select',
+    component: Layout,
+    redirect: '/select/index',
+    children: [{
+        path: 'index',
+        name: '多级select联动',
+        component: _import('select/index', 'views')
+    }]
+}, {
     path: '/iconfont',
     component: Layout,
     redirect: '/iconfont/index',

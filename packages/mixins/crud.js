@@ -63,6 +63,7 @@ export default function() {
             return {
                 DIC: {},
                 dicList: [],
+                dicCascaderList: []
             }
         },
         created() {
@@ -76,17 +77,22 @@ export default function() {
                 this.rulesInit();
                 //初始化字典
                 this.dicInit();
-                //初始化表单
-                this.formInit();
             },
             dicInit() {
                 this.option.column.forEach(ele => {
-                    if (ele.dicData && typeof ele.dicData == 'string') {
+                    if (!validatenull(ele.dicUrl) && ele.cascaderFirst) {
+                        this.dicCascaderList.push({
+                            dicUrl: ele.dicUrl,
+                            dicData: ele.dicData,
+                        })
+                    } else if (validatenull(ele.dicUrl) && ele.dicData && typeof ele.dicData == 'string') {
                         this.dicList.push(ele.dicData)
                     }
                 })
                 this.GetDic().then(data => {
-                    this.DIC = data
+                    this.DIC = data;
+                    //初始化表单
+                    this.formInit();
                 })
             },
             vaildData(val, dafult) {
@@ -95,13 +101,32 @@ export default function() {
                 }
                 return !validatenull(val) ? val : dafult;
             },
+            GetDicByType(href, type) {
+                return new Promise((resolve, reject) => {
+                    resolve([{
+                        label: "测试1",
+                        value: 1
+                    }, {
+                        label: "测试2",
+                        value: 2
+                    }])
+                    this.$http.get(href.replace('{{key}}', type)).then(function(response) {
+                        if (!validatenull(response.data.data)) {
+                            resolve(response.data.data);
+                        } else if (!validatenull(response.data)) {
+                            resolve(response.data);
+                        }
+                    })
+                })
+            },
             GetDic() {
                 return new Promise((resolve, reject) => {
                     let result = [],
                         dicData = {},
                         locaDic = this.option.dicData,
-                        list = this.dicList;
-                    if (validatenull(list)) {
+                        list = this.dicList,
+                        cascaderList = this.dicCascaderList;
+                    if (validatenull(list) && validatenull(cascaderList)) {
                         return;
                     }
                     list.forEach(ele => {
@@ -120,6 +145,14 @@ export default function() {
                                     }
                                 })
                             }
+                        }))
+                    })
+                    cascaderList.forEach(ele => {
+                        result.push(new Promise((resolve, reject) => {
+                            this.GetDicByType(ele.dicUrl, ele.dicData).then(function(response) {
+                                list.push(ele.dicData);
+                                resolve(response);
+                            })
                         }))
                     })
                     Promise.all(result).then(data => {

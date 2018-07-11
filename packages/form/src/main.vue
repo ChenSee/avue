@@ -38,7 +38,8 @@
                          :dic="setDic(column.dicData,DIC[column.dicData])"
                          :disabled="column.disabled"
                          :format="column.format"
-                         :value-format="column.valueFormat"></component>
+                         :value-format="column.valueFormat"
+                         @change="column.cascader?change(index):''"></component>
             </el-form-item>
           </el-col>
         </template>
@@ -66,13 +67,13 @@ export default {
   components: {},
   data () {
     return {
+      first: true,
       form: {},
       formRules: {}
     };
   },
   created () {
-    //初始化值
-    this.formVal();
+
   },
   mounted () { },
   computed: {
@@ -98,12 +99,46 @@ export default {
         if (ele.rules) this.formRules[ele.prop] = ele.rules;
       });
     },
+    change (index) {
+      const column = this.option.column;
+      const list = column[index].cascader;
+      const prop = column[index].prop;
+      const url = column[index + 1].dicUrl;
+      const type = column[index + 1].dicData;
+      if (!this.first) {
+        list.forEach((ele) => {
+          this.form[ele] = '';
+        })
+      }
+      this.GetDicByType(url, this.form[prop]).then(res => {
+        this.DIC[type] = res;
+        this.DIC = Object.assign({}, this.DIC);
+      });
+    },
     formInit () {
       const formObj = this.formInitVal(this.option.column);
+      if (this.first) {
+        for (let o in this.value) {
+          formObj.form[o] = this.value[o];
+        }
+      }
       this.form = Object.assign({}, formObj.form);
+      for (let i = 0; i < this.option.column.length; i++) {
+        const ele = this.option.column[i];
+        if (ele.cascaderFirst) {
+          const cascader = ele.cascader;
+          this.change(i);
+          for (let j = 0; j < ele.cascader.length - 1; j++) {
+            const cindex = i + (j + 1);
+            const cele = this.option.column[cindex];
+            cele.cascader = cascader.slice(cindex);
+            this.change(cindex);
+          }
+        }
+      }
+      this.first = false;
     },
     formVal () {
-      this.form = this.value;
       this.$emit("input", this.form);
     },
     submit () {
