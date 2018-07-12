@@ -1,4 +1,4 @@
-const baseUrl = `http://122.4.247.156:3333/select`;
+const baseUrl = `https://avue.2bugs.cn/test/select`;
 export default {
     props: {
         label: 'name',
