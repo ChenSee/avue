@@ -17,6 +17,7 @@
                     :name="column.prop"
                     v-if="column.formsolt"></slot>
               <component :is="getComponent(column.type)"
+                         :props="column.props || option.props"
                          v-else
                          v-model="form[column.prop]"
                          :precision="column.precision"
@@ -110,8 +111,9 @@ export default {
           this.form[ele] = '';
         })
       }
-      this.GetDicByType(url, this.form[prop]).then(res => {
-        this.DIC[type] = res;
+      this.GetDicByType(url.replace('{{key}}', this.form[prop])).then(res => {
+        let data = res;
+        this.DIC[type] = data;
         this.DIC = Object.assign({}, this.DIC);
       });
     },
@@ -126,13 +128,14 @@ export default {
       for (let i = 0; i < this.option.column.length; i++) {
         const ele = this.option.column[i];
         if (ele.cascaderFirst) {
-          const cascader = ele.cascader;
-          this.change(i);
-          for (let j = 0; j < ele.cascader.length - 1; j++) {
+          const cascader = [].concat(ele.cascader)
+          const cascaderLen = ele.cascader.length - 1;
+          if (!validatenull(this.form[ele.prop])) this.change(i);
+          for (let j = 0; j < cascaderLen; j++) {
             const cindex = i + (j + 1);
             const cele = this.option.column[cindex];
             cele.cascader = cascader.slice(cindex);
-            this.change(cindex);
+            if (!validatenull(this.form[cele.prop])) this.change(cindex);
           }
         }
       }

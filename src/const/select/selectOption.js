@@ -1,36 +1,28 @@
-const baseUrl = 'http://127.0.0.1';
+const baseUrl = `http://122.4.247.156:3333/select`;
 export default {
+    props: {
+        label: 'name',
+        value: 'code'
+    },
     column: [{
-        label: '小区',
-        prop: 'xiaoqu',
+        label: '省份',
+        prop: 'province',
         type: 'select',
-        cascader: ['louyu', 'danyuan', 'fangjian', 'renyuan'],
+        cascader: ['city', 'area'],
         cascaderFirst: true,
-        dicUrl: `${baseUrl}/xiaoqu/{{key}}`,
-        dicData: 'xiaoqu'
+        dicUrl: `${baseUrl}/getProvince`,
+        dicData: 'PROVINCE'
     }, {
-        label: '楼宇',
-        prop: 'louyu',
+        label: '城市',
+        prop: 'city',
         type: 'select',
-        dicUrl: `${baseUrl}/louyu/{{key}}`,
-        dicData: 'louyu'
+        dicUrl: `${baseUrl}/getCity/{{key}}`,
+        dicData: 'CITY'
     }, {
-        label: '单元',
-        prop: 'danyuan',
+        label: '地区',
+        prop: 'area',
         type: 'select',
-        dicUrl: `${baseUrl}/danyuan/{{key}}`,
-        dicData: 'danyuan',
-    }, {
-        label: '房间',
-        prop: 'fangjian',
-        type: 'select',
-        dicUrl: `${baseUrl}/fangjian/{{key}}`,
-        dicData: 'fangjian',
-    }, {
-        label: '人员',
-        prop: 'renyuan',
-        type: 'select',
-        dicUrl: `${baseUrl}/renyuan/{{key}}`,
-        dicData: 'renyuan',
+        dicUrl: `${baseUrl}/getArea/{{key}}`,
+        dicData: 'AREA',
     }]
 }

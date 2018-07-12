@@ -101,20 +101,17 @@ export default function() {
                 }
                 return !validatenull(val) ? val : dafult;
             },
-            GetDicByType(href, type) {
+            GetDicByType(href) {
                 return new Promise((resolve, reject) => {
-                    resolve([{
-                        label: "测试1",
-                        value: 1
-                    }, {
-                        label: "测试2",
-                        value: 2
-                    }])
-                    this.$http.get(href.replace('{{key}}', type)).then(function(response) {
-                        if (!validatenull(response.data.data)) {
-                            resolve(response.data.data);
-                        } else if (!validatenull(response.data)) {
-                            resolve(response.data);
+                    this.$http.get(href).then(function(res) {
+                        //降级处理
+                        const list = res.data;
+                        if (!validatenull(list.data)) {
+                            resolve(list.data instanceof Array ? list.data : []);
+                        } else if (!validatenull(list)) {
+                            resolve(list instanceof Array ? list : []);
+                        } else {
+                            resolve([]);
                         }
                     })
                 })
@@ -123,7 +120,7 @@ export default function() {
                 return new Promise((resolve, reject) => {
                     let result = [],
                         dicData = {},
-                        locaDic = this.option.dicData,
+                        locaDic = this.option.dicData || [],
                         list = this.dicList,
                         cascaderList = this.dicCascaderList;
                     if (validatenull(list) && validatenull(cascaderList)) {
@@ -134,24 +131,17 @@ export default function() {
                             if (validatenull(this.option.dicUrl)) {
                                 resolve(locaDic[ele]);
                             } else {
-                                //降级处理data层级关系
-                                this.$http.get(`${this.option.dicUrl}/${ele}`).then(function(response) {
-                                    if (!validatenull(response.data.data)) {
-                                        resolve(response.data.data);
-                                    } else if (!validatenull(response.data)) {
-                                        resolve(response.data);
-                                    } else {
-                                        resolve([]);
-                                    }
+                                this.GetDicByType(`${this.option.dicUrl}/${ele}`).then(function(res) {
+                                    resolve(res);
                                 })
                             }
                         }))
                     })
                     cascaderList.forEach(ele => {
                         result.push(new Promise((resolve, reject) => {
-                            this.GetDicByType(ele.dicUrl, ele.dicData).then(function(response) {
+                            this.GetDicByType(ele.dicUrl, ele.dicData).then(function(res) {
                                 list.push(ele.dicData);
-                                resolve(response);
+                                resolve(res);
                             })
                         }))
                     })

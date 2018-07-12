@@ -188,7 +188,7 @@
                 <component :is="getComponent(column.type)"
                            v-else
                            v-model="tableForm[column.prop]"
-                           :props="option.props"
+                           :props="column.props || option.props"
                            :precision="column.precision"
                            :multiple="column.multiple"
                            :height="setPx(column.formHeight,'auto')"
