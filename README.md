@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://img.shields.io/circleci/project/vuejs/vue/dev.svg" alt="Build Status">
+  <img src="https://img.shields.io/badge/npm-v5.5.1-blue.svg" alt="Version">
+  <img src="https://img.shields.io/npm/l/vue.svg" alt="License">
+</p>
+
 
 #### 简介
 
@@ -28,6 +34,7 @@ Avue是基于[Vue.js](https://github.com/vuejs/vue)和[element](https://github.c
 #### avue综合实际实例
 - [crud综合例子](http://sandbox.runjs.cn/show/xjjyj1cj)
 - [crud流程例子](https://sandbox.runjs.cn/show/hnhjz9wn)
+- [crud多级联动例子](https://sandbox.runjs.cn/show/vigm1mvl)
 - 未完待续
 
 #### 技术文档
@@ -93,104 +100,37 @@ import Avue from 'avue-cli/packages/index.js';
 - 更多功能开在开发
 ```
 
-#### 页面展示
-**炫彩主题**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-color.png">
-</p>
-
-
-**主题色**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-theme.png">
-</p>
-
-**本地数据持久化**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-store.png">
-</p>
-
-**环境变量**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-dev.png">
-</p>
-
-**表格树**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-table-tree.png">
-</p>
-
-**登录**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-login.png">
-</p>
-
-**权限测试页面**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-roles-test.png">
-</p>
-
-**数据展示**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-datashow.png">
-</p>
-
-**错误页面**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-errpage.png">
-</p>
-
-**错误日志记录**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-errlog.png">
-</p>
-
-**CRUD**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-crud.png">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-grade.png">
-</p>
-
-**FORM**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-form.png">
-</p>
-
-**用户管理**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-user.png">
-</p>
-
-**角色管理**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-role.png">
-</p>
-
-**菜单设置**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-menu.png">
-</p>
-
-**阿里巴巴图标库(在线调用)**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-ali.png">
-</p>
-
-**登录页面SSR渲染**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/login-ssr.png">
-</p>
-
-**主页**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-index.png">
-</p>
-
-**第三方网站**
-<p align="center">
-  <img width="900" src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-iframe.png">
-</p>
-
+### 页面展示 （点击可大图预览）
+<table>
+    <tr>
+        <td align="center"><font>炫彩主题</font><img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-color.png"/></td>
+        <td align="center">主题色<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-theme.png"/></td>
+    </tr>
+    <tr>
+        <td align="center">数据持久化<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-store.png"/></td>
+        <td align="center">环境变量<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-dev.png"/></td>
+    </tr>
+    <tr>
+        <td align="center">表格树<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-table-tree.png"/></td>
+        <td align="center">登录<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-login.png"/></td>
+    </tr>
+    <tr>
+        <td align="center">权限测试<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-roles-test.png"/></td>
+        <td align="center">数据展示<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-datashow.png"/></td>
+    </tr>
+    <tr>
+        <td align="center">错误页面<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-errpage.png"/></td>
+        <td align="center">错误日志<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-errlog.png"/></td>
+    </tr>
+     <tr>
+        <td align="center">CRUD<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-crud.png"/></td>
+        <td align="center">FORM<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-form.png"/></td>
+    </tr>
+    <tr>
+        <td align="center">阿里巴巴图标库(在线调用)<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-ali.png"/></td>
+        <td align="center">主页<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-index.png"/></td>
+    </tr>
+</table>
 
 #### 开发
 ```bash
