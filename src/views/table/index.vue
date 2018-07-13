@@ -7,6 +7,7 @@
                  :table-loading="tableLoading"
                  :before-open="boxhandleOpen"
                  :before-close="boxhandleClose"
+                 :row-class-name="tableRowClassName"
                  @row-dblclick="handleRowDBLClick"
                  @row-click="handleRowClick"
                  :page="page"
@@ -111,7 +112,7 @@
                 v-model="formJson">
       </el-input>
     </basic-container>
-    
+
     <el-dialog title="菜单"
                :visible.sync="grade.box"
                width="40%">
@@ -129,6 +130,15 @@
     </el-dialog>
   </div>
 </template>
+<style>
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
+}
+</style>
 
 <script>
 import { mapGetters } from 'vuex';
@@ -170,6 +180,14 @@ export default {
   },
   props: [],
   methods: {
+    tableRowClassName ({ row, rowIndex }) {
+      if (rowIndex === 1) {
+        return 'warning-row';
+      } else if (rowIndex === 3) {
+        return 'success-row';
+      }
+      return '';
+    },
     tip () {
       this.$notify({
         message: '点击事件',

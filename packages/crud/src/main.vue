@@ -93,6 +93,7 @@
         <el-table-column :label="vaildData(option.indexLabel,'#')"
                          type="index"
                          width="50"
+                         :index="indexMethod"
                          fixed="left"
                          align="center">
         </el-table-column>
@@ -169,6 +170,7 @@
       <el-form ref="tableForm"
                class="crud-form"
                :model="tableForm"
+               :label-position="option.labelPosition"
                :label-width="setPx(option.labelWidth,80)"
                :rules="tableFormRules">
         <el-row :gutter="20"
@@ -317,6 +319,9 @@ export default {
     }
   },
   methods: {
+    indexMethod (index) {
+      return (index + 1) + ((this.page.currentPage - 1) * this.page.pageSize)
+    },
     showClomnu () { },
     refreshChange () {
       this.$emit("refresh-change", this.page);

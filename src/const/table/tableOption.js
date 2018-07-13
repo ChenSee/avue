@@ -40,6 +40,14 @@ export default {
             formsolt: true,
         },
         {
+            label: "选择",
+            prop: "select",
+            type: 'select',
+            valueDefault: true,
+            hide: true,
+            dicData: 'VAILD',
+        },
+        {
             label: "数字",
             prop: "number",
             sortable: true,
@@ -69,12 +77,12 @@ export default {
             hide: true,
         },
         {
+            width: 100,
             label: "select多选",
-            prop: "select",
+            prop: "moreselect",
             type: "select",
             multiple: true,
-            dicData: 'TYPE',
-            hide: true,
+            dicData: 'SEX',
         },
         {
             label: "日期时间",
@@ -100,6 +108,14 @@ export default {
             hide: true
         },
         {
+            width: 100,
+            label: "多选",
+            prop: "checkbox",
+            type: "checkbox",
+            dicData: 'SEX',
+            hide: true,
+        },
+        {
             label: "地址",
             prop: "address",
             width: "300",
@@ -111,6 +127,6 @@ export default {
             disabled: true,
             addDisabled: false,
             overHidden: true
-        }
+        },
     ]
 };

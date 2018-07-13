@@ -1,7 +1,6 @@
-.theme-star {
+.theme-gradual {
     .avue-contail {
-        background-image: url("/static/img/bg/star-squashed.jpeg");
-        background-size: 100% 100%;
+        background: linear-gradient(120deg, #bc00e3, #4efffb) !important;
     }
     .el-card {
         opacity: .9;
@@ -44,16 +43,16 @@
         border-bottom: none;
     }
     .tags-menu {
-        background-color: rgba(0, 0, 0, .6) !important;
+        background: linear-gradient(90deg, hsla(0, 0%, 100%, .8), hsla(0, 0%, 100%, 0)) !important;
     }
     .tag-item {
         color: #fff !important;
         border: none !important;
-        background-color: rgba(255, 255, 255, .5);
+        background-color: rgba(255, 255, 255, .5) !important;
         &.is-active {
             color: #fff !important;
             border: 1px solid #fff !important;
-            background-color: rgba(0, 0, 0, .4);
+            background: linear-gradient(90deg, hsla(0, 0%, 100%, .28), hsla(0, 0%, 100%, 0)) !important;
             .tag-item-icon {
                 color: #fff !important;
             }
@@ -61,12 +60,12 @@
     }
     .nest-menu .el-submenu>.el-submenu__title:hover,
     .el-submenu .el-menu-item:hover {
-        background-color: rgba(0, 0, 0, .4) !important;
+        background: linear-gradient(90deg, hsla(0, 0%, 100%, .28), hsla(0, 0%, 100%, 0)) !important;
     }
     .el-menu-item {
         &.is-active,
         &.siderbar-active {
-            background-color: rgba(0, 0, 0, .4) !important;
+            background: linear-gradient(90deg, hsla(0, 0%, 100%, .28), hsla(0, 0%, 100%, 0)) !important;
             span {
                 color: #fff !important;
             }

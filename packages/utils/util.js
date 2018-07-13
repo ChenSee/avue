@@ -89,9 +89,7 @@ export const formInitVal = (list) => {
             (ele.type == 'select' && ele.multiple)
         ) {
             form[ele.prop] = []
-            if (ele.search) {
-                searchForm[ele.prop] = []
-            }
+            if (ele.search) searchForm[ele.prop] = []
         } else if (ele.type == 'number') {
             form[ele.prop] = 0
             if (ele.search) {

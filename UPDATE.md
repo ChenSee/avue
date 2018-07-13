@@ -1,6 +1,25 @@
+#### 1.5.0
+
+ **crud and form**
+ - 修复：当type=switch时，数据改变时无法回传数据，[#IL8TZ](https://gitee.com/smallweigit/avue/issues/IL8TZ)
+ - 新增：表单中label显示的对齐方式，labelPosition默认为left，[#IL5Y2](https://gitee.com/smallweigit/avue/issues/IL5Y2)
+ - 修复：修复了select多选表格回显对应label显示问题
+ 
+ **form**
+ - 新增：多个select级联框之间的属性配置，具体操作详情看文档，[demo](https://gitee.com/smallweigit/avue/blob/master/src/views/select/index.vue)
+
+ **crud**
+ - 优化：表格的需要序号依次排开，[#IL6LL](https://gitee.com/smallweigit/avue/issues/IL6LL)
+ - 新增：表格自定义样式属性row-class-name，[IKSKQ](https://gitee.com/smallweigit/avue/issues/IKSKQ)
+
+ **其它**
+ - 新增：一款纯色和渐变背景主题[感谢@fairyever](https://gitee.com/fairyever)
+ - 新增：前端加密工具库，支持aes和base64俩中加密，[demo](https://gitee.com/smallweigit/avue/blob/master/src/store/modules/user.js)
+ - 删除：取消了服务端渲染（npm run start）
+
 #### 1.4.8
 
- **crud and from**
+ **crud and form**
  - 修复：v-model 双向model数据绑定问题
  - 修复：用户管理 编辑器光标位置BUG，始终在第一行，[#IL2N1](https://gitee.com/smallweigit/avue/issues/IL2N1)
  - 修复：ueditor控件超出行数没有滚动条，[#IKZAR](https://gitee.com/smallweigit/avue/issues/IKZAR)
@@ -8,7 +27,7 @@
 
 #### 1.4.7
 
- **crud and from**
+ **crud and form**
  - 优化：更换了更加稳定的富文本编辑器
  - 修复：用户管理 ueditor属性共用，[#IKWT2](https://gitee.com/smallweigit/avue/issues/IKWT2)
  - 修复：点击搜索栏的 清除按钮，[#IKWSY](https://gitee.com/smallweigit/avue/issues/IKWSY)
@@ -24,7 +43,7 @@
  
 #### 1.4.6
 
- **crud and from**
+ **crud and form**
 - 新增：props（select，radio，checkbox，cascader,switch）配置选项，对象可以制定字典中key-value的值，详情见文档
 - 新增：type=number时step步长设置，默认为1
 - 新增：type=number时controlsPosition 按钮的位置，默认为上下，可选值:right,top，
@@ -41,7 +60,7 @@
 
 #### 1.4.5
 
- **crud and from**
+ **crud and form**
 - 修复：控件中高度写死，不固定问题
 - 优化：dicUrl接口中字典 多层data的处理问题，降级处理
 
@@ -57,7 +76,7 @@
 
 #### 1.4.4
 
- **crud and from**
+ **crud and form**
 - 优化：字典不用在option中申明合集，自动匹配clumons中的字典值
 - 优化：部分组件代码优化
 - 优化：dicData和dicUrl，本地字典和网络字典的合并
@@ -74,7 +93,7 @@
 
 #### 1.4.3
 
- **crud and from**
+ **crud and form**
 - 优化：组件新增了placeholder属性，默认为label，[#IKJ6L](https://gitee.com/smallweigit/avue/issues/IKJ6L)
 - 优化：type属性设置为date、datetime、time的时候size的属性无效 type属性设置time时无法选择时间，[#IKHI9](https://gitee.com/smallweigit/avue/issues/IKHI9)
 - 新增：type的属性switch开关控件

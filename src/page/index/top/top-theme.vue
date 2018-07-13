@@ -31,6 +31,12 @@ export default {
         }, {
           name: '炫彩主题',
           value: 'theme-star'
+        }, {
+          name: '黑色主题',
+          value: 'theme-black'
+        }, {
+          name: '渐变主题',
+          value: 'theme-gradual'
         }
       ]
     }

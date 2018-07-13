@@ -3,8 +3,10 @@
     <el-row :span="24">
       <template v-for="item in data">
         <el-col :span="span">
-          <div class="item" :class="[{'item--easy':discount}]">
-            <div class="item-icon" :style="{color:color}">
+          <div class="item"
+               :class="[{'item--easy':discount}]">
+            <div class="item-icon"
+                 :style="{color:color}">
               <i :class="item.icon"></i>
             </div>
             <div class="item-info">
@@ -21,7 +23,7 @@
 <script>
 export default {
   name: 'AvueDataIcons',
-  data() {
+  data () {
     return {
       span: this.option.span || 6,
       data: this.option.data,
@@ -32,12 +34,11 @@ export default {
   props: {
     option: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>

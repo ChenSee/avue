@@ -1,8 +1,8 @@
 const steps = [{
     element: '.guide-container',
     popover: {
-        title: 'Title on Popover',
-        description: 'Body of the popover',
+        title: '介绍的标题',
+        description: '介绍的内容',
         position: 'bottom'
     }
 }]

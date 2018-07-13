@@ -2,6 +2,7 @@
   <div class="from-container pull-auto">
     <el-form ref="form"
              :model="form"
+             :label-position="option.labelPosition"
              :label-width="setPx(option.labelWidth,80)"
              :rules="formRules">
       <el-row :gutter="20"
@@ -109,6 +110,7 @@ export default {
       if (!this.first) {
         list.forEach((ele) => {
           this.form[ele] = '';
+          this.DIC[ele] = [];
         })
       }
       this.GetDicByType(url.replace('{{key}}', this.form[prop])).then(res => {

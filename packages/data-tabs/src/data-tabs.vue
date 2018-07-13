@@ -1,8 +1,11 @@
 <template>
   <div class="data-tabs">
     <el-row :span="24">
-      <el-col :span="span" v-for="(item,index) in data" :key="index">
-        <div class="item" :style="{background:item.color}">
+      <el-col :span="span"
+              v-for="(item,index) in data"
+              :key="index">
+        <div class="item"
+             :style="{background:item.color}">
           <div class="item-header">
             <p>{{item.title}}</p>
             <span>{{item.subtitle}}</span>
@@ -24,7 +27,7 @@
 <script>
 export default {
   name: 'AvueDataTabs',
-  data() {
+  data () {
     return {
       span: this.option.span || 6,
       data: this.option.data || []
@@ -33,12 +36,11 @@ export default {
   props: {
     option: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>

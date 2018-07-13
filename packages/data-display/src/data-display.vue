@@ -1,8 +1,11 @@
 <template>
   <div class="avue-data-display">
     <el-row :span="24">
-      <el-col v-for="(item,index) in data" :key="index" :span="span">
-        <div class="item" :style="{color:color}">
+      <el-col v-for="(item,index) in data"
+              :key="index"
+              :span="span">
+        <div class="item"
+             :style="{color:color}">
           <h5 class="count">{{item.count}}</h5>
           <span class="splitLine" />
           <p class="title">{{item.title}}</p>
@@ -16,7 +19,7 @@
 <script>
 export default {
   name: 'AvueDataDisplay',
-  data() {
+  data () {
     return {
       span: this.option.span || 8,
       data: this.option.data,
@@ -26,10 +29,10 @@ export default {
   props: {
     option: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
-  created() {},
+  created () { },
   methods: {}
 }
 </script>

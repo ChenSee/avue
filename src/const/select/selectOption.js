@@ -11,18 +11,18 @@ export default {
         cascader: ['city', 'area'],
         cascaderFirst: true,
         dicUrl: `${baseUrl}/getProvince`,
-        dicData: 'PROVINCE'
+        dicData: 'province'
     }, {
         label: '城市',
         prop: 'city',
         type: 'select',
         dicUrl: `${baseUrl}/getCity/{{key}}`,
-        dicData: 'CITY'
+        dicData: 'city'
     }, {
         label: '地区',
         prop: 'area',
         type: 'select',
         dicUrl: `${baseUrl}/getArea/{{key}}`,
-        dicData: 'AREA',
+        dicData: 'area',
     }]
 }

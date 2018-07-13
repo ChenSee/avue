@@ -1,5 +1,6 @@
 <template>
   <el-switch v-model="text"
+             @change="handleChange"
              :active-text="getDic(0)[labelKey]"
              :active-value="getDic(0)[valueKey]"
              :inactive-value="getDic(1)[valueKey]"
