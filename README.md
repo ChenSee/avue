@@ -127,7 +127,7 @@ import Avue from 'avue-cli/packages/index.js';
         <td align="center">FORM<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-form.png"/></td>
     </tr>
     <tr>
-        <td align="center">阿里巴巴图标库(在线调用)<img src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-ali.png"/></td>
+        <td align="center">阿里巴巴图标库(在线调用)<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-ali.png"/></td>
         <td align="center">主页<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/static/cdn/images/avue-index.png"/></td>
     </tr>
 </table>
