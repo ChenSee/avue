@@ -27,6 +27,7 @@ for (let i = 0; i < 5; i++) {
         name: Mock.mock('@cname'),
         username: Mock.mock('@last'),
         type: [0, 2],
+        checkbox: [0, 1],
         'number|0-100': 0,
         'sex|0-1': 0,
         moreselect: [0, 1],

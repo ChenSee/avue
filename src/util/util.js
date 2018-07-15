@@ -4,7 +4,16 @@ import {
 import {
     baseUrl
 } from '@/config/env'
-
+/**
+ * 设置灰度模式
+ */
+export const toggleGrayMode = (status) => {
+    if (status) {
+        document.body.className = document.body.className + ' grayMode';
+    } else {
+        document.body.className = document.body.className.replace(' grayMode', '');
+    }
+};
 /**
  * 设置主题
  */

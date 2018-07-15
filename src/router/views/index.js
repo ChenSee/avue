@@ -64,6 +64,15 @@ export default [{
         component: _import('role', 'views')
     }]
 }, {
+    path: '/gray',
+    component: Layout,
+    redirect: '/gray/index',
+    children: [{
+        path: 'index',
+        name: '灰度模式',
+        component: _import('gray/index', 'views')
+    }]
+}, {
     path: '/table',
     component: Layout,
     redirect: '/table/index',

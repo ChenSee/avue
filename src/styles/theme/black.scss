@@ -68,11 +68,15 @@
     .el-submenu .el-menu-item:hover {
         background: hsla(0, 0%, 100%, .05) !important;
     }
+    .el-menu--vertical {
+        background-color: #002253!important;
+    }
     .el-menu-item {
         &.is-active,
         &.siderbar-active {
             background: hsla(0, 0%, 100%, .05)!important;
-            span {
+            span,
+            i {
                 color: #ffb870 !important;
             }
         }

@@ -6,7 +6,7 @@ export default {
     index: true,
     border: true,
     expand: true,
-    stripe: true,
+    stripe: false,
     selection: true,
     menuWidth: 300,
     menuAlign: 'center',
@@ -51,6 +51,7 @@ export default {
             label: "数字",
             prop: "number",
             sortable: true,
+            valueDefault: 3,
             addVisdiplay: false,
             editDisabled: true,
             type: 'number',
@@ -112,6 +113,7 @@ export default {
             label: "多选",
             prop: "checkbox",
             type: "checkbox",
+            valueDefault: [0],
             dicData: 'SEX',
             hide: true,
         },
@@ -125,7 +127,7 @@ export default {
             minRow: 4,
             span: 24,
             disabled: true,
-            addDisabled: false,
+            addDisabled: true,
             overHidden: true
         },
     ]

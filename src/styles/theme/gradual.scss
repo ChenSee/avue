@@ -62,6 +62,9 @@
     .el-submenu .el-menu-item:hover {
         background: linear-gradient(90deg, hsla(0, 0%, 100%, .28), hsla(0, 0%, 100%, 0)) !important;
     }
+    .el-menu--vertical {
+        background: linear-gradient(120deg, #bc00e3, #4efffb) !important;
+    }
     .el-menu-item {
         &.is-active,
         &.siderbar-active {

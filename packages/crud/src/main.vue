@@ -439,6 +439,8 @@ export default {
     // 新增
     rowAdd () {
       this.boxType = 0;
+      const formObj = this.formInitVal(this.option.column);
+      this.tableForm = Object.assign({}, formObj.form);
       this.show();
     },
     // 编辑

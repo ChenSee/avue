@@ -130,15 +130,6 @@
     </el-dialog>
   </div>
 </template>
-<style>
-.el-table .warning-row {
-  background: oldlace;
-}
-
-.el-table .success-row {
-  background: #f0f9eb;
-}
-</style>
 
 <script>
 import { mapGetters } from 'vuex';
@@ -511,7 +502,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .table-container {
   padding: 8px 10px;
 }
@@ -526,5 +517,12 @@ export default {
   margin-right: 0;
   margin-bottom: 0;
   width: 50%;
+}
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
 }
 </style>

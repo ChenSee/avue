@@ -1,5 +1,8 @@
 #### 1.5.0
 
+说明：avue1.x版本已经趋向于稳定，将不再做新的功能增加，但会根据issuse继续持续维护和优化将更多的精力投放于avue2.0  
+[avue2.0详情](https://gitee.com/smallweigit/avue/wikis/%E9%AB%98%E7%BA%A7vip%E7%BE%A4)
+
  **crud and form**
  - 修复：当type=switch时，数据改变时无法回传数据，[#IL8TZ](https://gitee.com/smallweigit/avue/issues/IL8TZ)
  - 新增：表单中label显示的对齐方式，labelPosition默认为left，[#IL5Y2](https://gitee.com/smallweigit/avue/issues/IL5Y2)
@@ -10,11 +13,15 @@
 
  **crud**
  - 优化：表格的需要序号依次排开，[#IL6LL](https://gitee.com/smallweigit/avue/issues/IL6LL)
- - 新增：表格自定义样式属性row-class-name，[IKSKQ](https://gitee.com/smallweigit/avue/issues/IKSKQ)
+ - 新增：表格自定义样式属性row-class-name，调用的时候要将stripe设置为false，否则无法是哟，[IKSKQ](https://gitee.com/smallweigit/avue/issues/IKSKQ)
+ - 修复：表单新增页面valueDetault默认值二次消失问题
 
  **其它**
  - 新增：一款纯色和渐变背景主题[感谢@fairyever](https://gitee.com/fairyever)
  - 新增：前端加密工具库，支持aes和base64俩中加密，[demo](https://gitee.com/smallweigit/avue/blob/master/src/store/modules/user.js)
+ - 新增：页面灰度模式切换demo
+ - 修复：黑色主题左侧菜单icon选中不变色问题
+ - 修复：多种主题色下二级菜单背景透明问题
  - 删除：取消了服务端渲染（npm run start）
 
 #### 1.4.8

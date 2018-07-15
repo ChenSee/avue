@@ -1,16 +1,35 @@
 <template>
   <div class="tags-container">
     <!-- tag盒子 -->
-    <div class="tags-box" ref="tagBox">
-      <div class="tags-list" ref="tagsList" @mousewheel="hadelMousewheel" @mouseup="hadelMouseUp" @mousemove="hadelMouse" @mousedown="hadelMousestart" @touchup="hadelMouseUp" @touchmove="hadelMouse" @touchstart="hadelMousestart">
-        <div ref="tagsPageOpened" class="tag-item" :class="{'is-active':nowTagValue==item.value}" :name="item.value" @contextmenu.prevent="openMenu(item,$event)" v-for="(item,index) in tagList" :key="index" @click="openUrl(item)">
+    <div class="tags-box"
+         ref="tagBox">
+      <div class="tags-list"
+           ref="tagsList"
+           @mousewheel="hadelMousewheel"
+           @mouseup="hadelMouseUp"
+           @mousemove="hadelMouse"
+           @mousedown="hadelMousestart"
+           @touchup="hadelMouseUp"
+           @touchmove="hadelMouse"
+           @touchstart="hadelMousestart">
+        <div ref="tagsPageOpened"
+             class="tag-item"
+             :class="{'is-active':nowTagValue==item.value}"
+             :name="item.value"
+             @contextmenu.prevent="openMenu(item,$event)"
+             v-for="(item,index) in tagList"
+             :key="index"
+             @click="openUrl(item)">
           <span class="icon-yuan tag-item-icon"></span>
           <span class="tag-text">{{item.label}}</span>
-          <i class="el-icon-close tag-close" @click.stop="closeTag(item)" v-if="item.close"></i>
+          <i class="el-icon-close tag-close"
+             @click.stop="closeTag(item)"
+             v-if="item.close"></i>
         </div>
       </div>
       <el-dropdown class="tags-menu pull-right">
-        <el-button type="primary" size="mini">
+        <el-button type="primary"
+                   size="mini">
           更多
           <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
@@ -32,7 +51,7 @@ import { resolveUrlPath, setUrlPath } from '@/util/util'
 import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'tags',
-  data() {
+  data () {
     return {
       visible: false,
       tagBodyLeft: 0,
@@ -46,36 +65,33 @@ export default {
       selectedTag: {}
     }
   },
-  created() {},
-  mounted() {
+  created () { },
+  mounted () {
     this.init()
   },
   watch: {
-    $route(to) {
+    $route (to) {
       this.init()
     },
-    visible(value) {
+    visible (value) {
       if (value) {
         document.body.addEventListener('click', this.closeMenu)
       } else {
         document.body.removeEventListener('click', this.closeMenu)
       }
     },
-    tagBodyLeft(value) {
+    tagBodyLeft (value) {
       this.$refs.tagsList.style.left = value + 'px'
     }
   },
   computed: {
     ...mapGetters(['tagWel', 'tagList', 'isCollapse', 'tag']),
-    nowTagValue: function() {
+    nowTagValue: function () {
       return setUrlPath(this.$route)
     },
-    tagListNum: function() {
-      return this.tagList.length != 0
-    }
   },
   methods: {
-    init() {
+    init () {
       this.refsTag = this.$refs.tagsPageOpened
       setTimeout(() => {
         this.refsTag.forEach((item, index) => {
@@ -86,10 +102,10 @@ export default {
         })
       }, 1)
     },
-    hadelMouseUp(e) {
+    hadelMouseUp (e) {
       this.lock = false
     },
-    hadelMousestart(e) {
+    hadelMousestart (e) {
       this.lock = true
       if (e.clientX && e.clientY) {
         this.startX = e.clientX
@@ -99,7 +115,7 @@ export default {
         this.startY = e.changedTouches[0].pageY
       }
     },
-    hadelMouse(e) {
+    hadelMouse (e) {
       const boundarystart = 0,
         boundaryend =
           this.$refs.tagsList.offsetWidth - this.$refs.tagBox.offsetWidth + 100
@@ -128,7 +144,7 @@ export default {
         this.tagBodyLeft = this.tagBodyLeft + distanceX
       }
     },
-    hadelMousewheel(e) {
+    hadelMousewheel (e) {
       const step = 0.8 * 90 //一个tag长度
       const boundarystart = 0,
         boundaryend =
@@ -141,7 +157,7 @@ export default {
         this.tagBodyLeft = this.tagBodyLeft + step
       }
     },
-    openMenu(tag, e) {
+    openMenu (tag, e) {
       if (this.tagList.length == 1) {
         return
       }
@@ -150,27 +166,27 @@ export default {
       this.left = e.clientX
       this.top = e.clientY
     },
-    closeOthersTags() {
+    closeOthersTags () {
       this.$store.commit('DEL_TAG_OTHER')
     },
-    closeMenu() {
+    closeMenu () {
       this.visible = false
     },
-    closeAllTags() {
+    closeAllTags () {
       this.$store.commit('DEL_ALL_TAG')
       this.$router.push({
         path: resolveUrlPath(this.tagWel.value),
         query: this.tagWel.query
       })
     },
-    moveToView(tag) {
+    moveToView (tag) {
       if (tag.offsetLeft < -this.tagBodyLeft) {
         // 标签在可视区域左侧
         this.tagBodyLeft = -tag.offsetLeft + 10
       } else if (
         tag.offsetLeft + 10 > -this.tagBodyLeft &&
         tag.offsetLeft + tag.offsetWidth <
-          -this.tagBodyLeft + this.$refs.tagBox.offsetWidth
+        -this.tagBodyLeft + this.$refs.tagBox.offsetWidth
       ) {
         // 标签在可视区域
       } else {
@@ -182,13 +198,13 @@ export default {
         )
       }
     },
-    openUrl(item) {
+    openUrl (item) {
       this.$router.push({
         path: resolveUrlPath(item.value, item.label),
         query: item.query
       })
     },
-    eachTag(tag) {
+    eachTag (tag) {
       for (var key in this.tagList) {
         if (this.tagList[key].value == tag.value) {
           return key
@@ -196,7 +212,7 @@ export default {
       }
       return -1
     },
-    closeTag(item) {
+    closeTag (item) {
       const key = this.eachTag(item)
       let tag
       this.$store.commit('DEL_TAG', item)

@@ -179,6 +179,13 @@ const second = [{
     meta: {},
     children: []
 }, {
+    id: 26,
+    label: "灰度模式",
+    href: `/gray/index`,
+    icon: 'icon-shujuzhanshi2',
+    meta: {},
+    children: []
+}, {
     id: 9,
     label: "系统管理",
     icon: 'icon-liuliangyunpingtaitubiao08',
