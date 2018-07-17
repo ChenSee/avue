@@ -35,7 +35,6 @@ export default {
       formJson: "",
       formOption: formOption,
       formData: {
-        username: "smallwei",
         name: "smallwei",
         sex: 0,
         type: 0,
@@ -48,7 +47,9 @@ export default {
     this.formJson = JSON.stringify(formOption, null, 2);
   },
   watch: {},
-  mounted () { },
+  mounted () {
+    this.formData.username = "smallwei";
+  },
   computed: {
     ...mapGetters(["permission"])
   },

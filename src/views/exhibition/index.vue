@@ -1,6 +1,10 @@
 <template>
   <div class="exhibition-contailer">
-     <basic-container>
+    <basic-container>
+      <h4>盒子卡片展示</h4>
+      <avue-data-box :option="easyDataOption3"></avue-data-box>
+    </basic-container>
+    <basic-container>
       <h4>数据展示</h4>
       <avue-data-display :option="option"></avue-data-display>
     </basic-container>
@@ -27,7 +31,7 @@
 export default {
   name: 'exhibition',
   components: {},
-  data() {
+  data () {
     return {
       option: {
         span: 8,
@@ -48,7 +52,7 @@ export default {
         ]
       },
       easyDataOption: {
-        span: 6,
+        span: 8,
         data: [
           {
             title: '分类统计',
@@ -76,15 +80,6 @@ export default {
             text: '评论次数',
             color: 'rgb(117, 56, 199)',
             key: '评'
-          },
-          {
-            title: '新闻统计',
-            subtitle: '实时',
-            count: 908,
-            allcount: 10222,
-            text: '评论次数',
-            color: 'rgb(59, 103, 164)',
-            key: '新'
           }
         ]
       },
@@ -180,12 +175,35 @@ export default {
             icon: 'icon-caidanguanli'
           }
         ]
+      },
+      easyDataOption3: {
+        span: 8,
+        data: [
+          {
+            title: '错误日志',
+            count: 12332,
+            icon: 'icon-cuowu',
+            color: 'rgb(49, 180, 141)',
+          },
+          {
+            title: '数据展示',
+            count: 33,
+            icon: 'icon-shujuzhanshi2',
+            color: 'rgb(56, 161, 242)',
+          },
+          {
+            title: '权限管理',
+            count: 2223,
+            icon: 'icon-jiaoseguanli',
+            color: 'rgb(117, 56, 199)',
+          },
+        ]
       }
     }
   },
-  created() {},
+  created () { },
   watch: {},
-  mounted() {},
+  mounted () { },
   computed: {}
 }
 </script>
