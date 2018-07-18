@@ -98,9 +98,13 @@ export default {
             dicData: 'VAILDATA',
             search: true,
             valueDefault: true,
-            formatter: (row) => {
-                return row.grade
-            },
+            formatter: (row, result) => {
+                let color = 'green'
+                if (row.grade) {
+                    color = 'red'
+                }
+                return `${result}--<span style="color: ${color}">${row.grade}</span>`
+            }
         },
         {
             label: "密码",

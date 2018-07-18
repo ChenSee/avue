@@ -2,9 +2,11 @@ export const DIC = {
     VAILD: [{
         label: '真',
         value: true,
+        color: 'green'
     }, {
         label: '假',
         value: false,
+        color: 'red'
     }],
     SEX: [{
         label: '男',
@@ -58,11 +60,13 @@ export const DIC = {
     ],
     VAILDATA: [{
             label: "激活",
-            value: true
+            value: true,
+            color: 'green'
         },
         {
             label: "禁用",
-            value: false
+            value: false,
+            color: 'red',
         }
     ],
     CRUDTYPE: [{

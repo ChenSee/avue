@@ -258,6 +258,10 @@ export default {
   components: {},
   data () {
     return {
+      defaultForm: {
+        tableForm: {},
+        searchForm: {}
+      },
       searchForm: {},
       boxVisible: false,
       boxType: 0,
@@ -273,6 +277,7 @@ export default {
   created () {
     //初始化动态列
     this.showClomnuInit();
+    this.formInit();
   },
   computed: {
     searchFlag: function () {
@@ -359,9 +364,8 @@ export default {
       }
     },
     formInit () {
-      const formObj = this.formInitVal(this.option.column);
-      this.tableForm = Object.assign({}, formObj.form);
-      this.searchForm = Object.assign({}, formObj.searchForm);
+      this.defaultForm = this.formInitVal(this.option.column);
+      this.searchForm = Object.assign({}, this.defaultForm.searchForm);
     },
     //搜索清空
     searchReset () {
@@ -409,12 +413,7 @@ export default {
     },
     //处理数据
     detail (row, column) {
-      let result = "";
-      if (column.formatter && typeof column.formatter === "function") {
-        result = column.formatter(row);
-      } else {
-        result = row[column.prop];
-      }
+      let result = row[column.prop] || "";
       if (column.type) {
         if (
           (column.type == "date" ||
@@ -427,20 +426,24 @@ export default {
             .replace("yyyy", "YYYY");
           result = moment(result).format(format);
         }
-        result = this.findByvalue(
-          typeof column.dicData == "string"
-            ? this.DIC[column.dicData]
-            : column.dicData,
-          result
-        );
+        if (column.dicData) {
+          result = this.findByvalue(
+            typeof column.dicData == "string"
+              ? this.DIC[column.dicData]
+              : column.dicData,
+            result
+          );
+        }
       }
+      if (column.formatter && typeof column.formatter === "function") {
+        result = column.formatter(row, result);
+      } 
       return result;
     },
     // 新增
     rowAdd () {
       this.boxType = 0;
-      const formObj = this.formInitVal(this.option.column);
-      this.tableForm = Object.assign({}, formObj.form);
+      this.tableForm = Object.assign({}, this.defaultForm.tableForm);
       this.show();
     },
     // 编辑
@@ -491,8 +494,8 @@ export default {
       const callack = () => {
         if (cancel !== false) {
           this.$nextTick(() => {
+            // 对表单进行重置，字段移除校验结果，值重置为初始值
             this.$refs["tableForm"].resetFields();
-            //释放form表单
             this.formReset();
           });
           this.boxVisible = false;

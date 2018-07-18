@@ -11,7 +11,11 @@ export const findByvalue = (dic, value) => {
             let index = 0;
             index = findArray(dic, value);
             if (index != -1) {
-                result = dic[index].label;
+                if (typeof(dic[index].color) == 'string') {
+                    result = `<span style="color: ${dic[index].color};">${dic[index].label}</span>`;
+                } else {
+                    result = dic[index].label;
+                }
             } else {
                 result = value;
             }
@@ -26,15 +30,20 @@ export const findByvalue = (dic, value) => {
                 }
                 count++;
             }
-            result = result.substr(0, result.length - 1);
-
+            if (result.length > 0) {
+                result = result.substr(0, result.length - 1);
+            }
         } else if (value instanceof Array) {
             result = [];
             let index = 0;
             value.forEach(ele => {
                 index = findArray(dic, ele);
                 if (index != -1) {
-                    result.push(dic[index].label);
+                    if (typeof(dic[index].color) == 'string') {
+                        result.push(`<span style="color: ${dic[index].color};">${dic[index].label}</span>`);
+                    } else {
+                        result.push(dic[index].label);
+                    }
                 } else {
                     result.push(ele);
                 }
@@ -80,7 +89,7 @@ export const setPx = (val, defval) => {
  */
 
 export const formInitVal = (list) => {
-    let form = {}
+    let tableForm = {}
     let searchForm = {}
     list.forEach(ele => {
         if (
@@ -88,23 +97,23 @@ export const formInitVal = (list) => {
             ele.type == 'cascader' ||
             (ele.type == 'select' && ele.multiple)
         ) {
-            form[ele.prop] = []
+            tableForm[ele.prop] = []
             if (ele.search) searchForm[ele.prop] = []
         } else if (ele.type == 'number') {
-            form[ele.prop] = 0
+            tableForm[ele.prop] = 0
             if (ele.search) {
                 searchForm[ele.prop] = 0
             }
         } else {
-            form[ele.prop] = ''
+            tableForm[ele.prop] = ''
             if (ele.search) {
                 searchForm[ele.prop] = ''
             }
         }
-        if (!validatenull(ele.valueDefault)) form[ele.prop] = ele.valueDefault
+        if (!validatenull(ele.valueDefault)) tableForm[ele.prop] = ele.valueDefault
     })
     return {
-        form,
+        tableForm,
         searchForm
     }
 }
