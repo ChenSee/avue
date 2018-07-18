@@ -34,13 +34,7 @@ export default {
     return {
       formJson: "",
       formOption: formOption,
-      formData: {
-        name: "smallwei",
-        sex: 0,
-        type: 0,
-        grade: [0, 1]
-      },
-      form: {}
+      formData: {},
     };
   },
   created () {
@@ -48,6 +42,12 @@ export default {
   },
   watch: {},
   mounted () {
+    this.formData = {
+      name: "smallwei",
+      sex: 0,
+      type: 0,
+      grade: [0, 1]
+    }
     this.formData.username = "smallwei";
   },
   computed: {

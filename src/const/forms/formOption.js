@@ -42,6 +42,7 @@ export default {
             label: "数字",
             prop: "number",
             type: 'number',
+            valueDefault: 3,
             minRows: 0,
             maxRows: 3,
         },

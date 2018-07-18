@@ -48,13 +48,13 @@ export default function() {
             },
             tableForm: {
                 handler(n, o) {
-                    this.formVal();
+                    this.$emit("input", this.tableForm);
                 },
                 deep: true
             },
             form: {
                 handler(n, o) {
-                    this.formVal();
+                    this.$emit("input", this.form);
                 },
                 deep: true
             }
@@ -77,6 +77,8 @@ export default function() {
                 this.rulesInit();
                 //初始化字典
                 this.dicInit();
+                //初始化表单
+                this.formInit();
             },
             dicInit() {
                 this.option.column.forEach(ele => {
@@ -91,8 +93,6 @@ export default function() {
                 })
                 this.GetDic().then(data => {
                     this.DIC = data;
-                    //初始化表单
-                    this.formInit();
                 })
             },
             vaildData(val, dafult) {

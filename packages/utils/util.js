@@ -5,16 +5,21 @@ import {
  * 根据字典的value显示label
  */
 export const findByvalue = (dic, value) => {
+        const getColorStr = (params) => {
+            let { color, label } = params;
+            return `<span style="color: ${color};">${label}</span>`;
+        }
         let result = '';
         if (validatenull(dic)) return value;
         if (typeof(value) == 'string' || typeof(value) == 'number' || typeof(value) == 'boolean') {
             let index = 0;
             index = findArray(dic, value);
             if (index != -1) {
-                if (typeof(dic[index].color) == 'string') {
-                    result = `<span style="color: ${dic[index].color};">${dic[index].label}</span>`;
+                if (typeof(dic[index].color) === 'string') {
+                    const str = getColorStr({ color: dic[index].color, label: dic[index].label });
+                    result = str;
                 } else {
-                    result = dic[index].label;
+                    result = (dic[index].label);
                 }
             } else {
                 result = value;
@@ -39,8 +44,9 @@ export const findByvalue = (dic, value) => {
             value.forEach(ele => {
                 index = findArray(dic, ele);
                 if (index != -1) {
-                    if (typeof(dic[index].color) == 'string') {
-                        result.push(`<span style="color: ${dic[index].color};">${dic[index].label}</span>`);
+                    if (typeof(dic[index].color) === 'string') {
+                        const str = getColorStr({ color: dic[index].color, label: dic[index].label });
+                        result.push(str);
                     } else {
                         result.push(dic[index].label);
                     }

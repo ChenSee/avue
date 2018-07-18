@@ -1,8 +1,16 @@
+#### 1.5.2
+
+ **crud and form**
+ - 修复： v-model双向数据绑定问题，[ILB57](https://gitee.com/smallweigit/avue/issues/ILB57)
+
+ **crud**
+ - 新增：color字典颜色字段，具体看demo例子，[PR7]](https://gitee.com/smallweigit/avue/pulls/7)
+ - 优化：formatter函数优化，可以自定义函数，[PR7]](https://gitee.com/smallweigit/avue/pulls/7)
+
 #### 1.5.1
 
-
  **其它**
- 新增：一款扁平化的盒子数据展示组件，avue-data-box组件，详情看demo
+ - 新增：一款扁平化的盒子数据展示组件，avue-data-box组件，详情看demo
 
 #### 1.5.0
 

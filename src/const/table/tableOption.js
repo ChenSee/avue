@@ -99,11 +99,7 @@ export default {
             search: true,
             valueDefault: true,
             formatter: (row, result) => {
-                let color = 'green'
-                if (row.grade) {
-                    color = 'red'
-                }
-                return `${result}--<span style="color: ${color}">${row.grade}</span>`
+                return result;
             }
         },
         {

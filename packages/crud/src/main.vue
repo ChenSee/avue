@@ -277,7 +277,6 @@ export default {
   created () {
     //初始化动态列
     this.showClomnuInit();
-    this.formInit();
   },
   computed: {
     searchFlag: function () {
@@ -350,21 +349,14 @@ export default {
       });
     },
     formVal () {
-      this.$emit("input", this.tableForm);
-    },
-    formReset () {
-      for (let o in this.tableForm) {
-        if (this.tableForm[o] instanceof Array) {
-          this.tableForm[o] = [];
-        } else if (typeof this.tableForm[o] === "number") {
-          this.tableForm[o] = 0;
-        } else {
-          this.tableForm[o] = "";
-        }
+      for (let o in this.value) {
+        this.tableForm[o] = this.value[o];
       }
+      this.$emit("input", this.tableForm);
     },
     formInit () {
       this.defaultForm = this.formInitVal(this.option.column);
+      this.tableForm = Object.assign({}, this.defaultForm.tableForm);
       this.searchForm = Object.assign({}, this.defaultForm.searchForm);
     },
     //搜索清空
@@ -437,7 +429,7 @@ export default {
       }
       if (column.formatter && typeof column.formatter === "function") {
         result = column.formatter(row, result);
-      } 
+      }
       return result;
     },
     // 新增
@@ -496,7 +488,6 @@ export default {
           this.$nextTick(() => {
             // 对表单进行重置，字段移除校验结果，值重置为初始值
             this.$refs["tableForm"].resetFields();
-            this.formReset();
           });
           this.boxVisible = false;
         }

@@ -120,13 +120,12 @@ export default {
       });
     },
     formInit () {
-      const formObj = this.formInitVal(this.option.column);
-      if (this.first) {
-        for (let o in this.value) {
-          formObj.form[o] = this.value[o];
-        }
+      let formObj = this.formInitVal(this.option.column);
+      let form = Object.assign({}, this.value)
+      for (let o in form) {
+        formObj.tableForm[o] = form[o];
       }
-      this.form = Object.assign({}, formObj.form);
+      this.form = Object.assign({}, formObj.tableForm);
       for (let i = 0; i < this.option.column.length; i++) {
         const ele = this.option.column[i];
         if (ele.cascaderFirst) {
@@ -144,6 +143,9 @@ export default {
       this.first = false;
     },
     formVal () {
+      for (let o in this.value) {
+        this.form[o] = this.value[o];
+      }
       this.$emit("input", this.form);
     },
     submit () {

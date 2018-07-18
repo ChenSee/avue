@@ -10,10 +10,12 @@ export const DIC = {
     }],
     SEX: [{
         label: '男',
-        value: 0
+        value: 0,
+        color: 'green'
     }, {
         label: '女',
-        value: 1
+        value: 1,
+        color: 'red'
     }],
     POSTIONDATA: [{
         label: '左对齐',
