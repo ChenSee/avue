@@ -10,10 +10,11 @@
 Avue是基于[Vue.js](https://github.com/vuejs/vue)和[element](https://github.com/ElemeFE/element)的快速开发框架 它的核心是数据驱动UI的思想，让我们从繁琐的crud开发中解脱出来，它的写法类似easyUI，但是写起来比easyui更容易，因为它是基础数据双向绑定以及其他vue的特性。同时不知局限于crud，它还有我们经常用的一些组件例如，表单，数据展示卡，人物展示卡等，更多的组件还在开发
 
 #### 高级vip群
-优先体验avue2.0  
+avue2.0来了
 1.更多可配置组件使用  
 2.代码更加简洁优化  
-3.调用组件更加灵活简单  
+3.调用组件更加灵活简单
+4.[演示地址](http://122.4.247.156:8000/#/login)  
 更多  
 [点击查看详情](https://gitee.com/smallweigit/avue/wikis/%E9%AB%98%E7%BA%A7vip%E7%BE%A4)
 
@@ -37,6 +38,10 @@ Avue是基于[Vue.js](https://github.com/vuejs/vue)和[element](https://github.c
 刚入门的前端小师妹博客:[https://my.oschina.net/u/3883702/](https://my.oschina.net/u/3883702/)   
 最近很多人反应不太会用crud快速开发组件，因此免费推出crud系列的讲解课程，详情请加QQ群
 
+#### avue1.0演示地址
+- [演示地址1:http://avue.2bugs.cn](http://avue.2bugs.cn)
+- [演示地址2:http://122.4.247.156:7777](http://122.4.247.156:7777)——jenkins+docker+git钩子自动部署
+
 #### avue综合实际实例
 - [crud综合例子](http://sandbox.runjs.cn/show/xjjyj1cj)
 - [crud流程例子](https://sandbox.runjs.cn/show/hnhjz9wn)
@@ -52,10 +57,6 @@ Avue是基于[Vue.js](https://github.com/vuejs/vue)和[element](https://github.c
 
 #### 更新日志
 - [更新日志](./UPDATE.md)
-
-#### 在线demo
-- [演示地址1:http://avue.2bugs.cn](http://avue.2bugs.cn)
-- [演示地址2:http://122.4.247.156:7777](http://122.4.247.156:7777)——jenkins+docker+git钩子自动部署
 
 #### 使用方式
 1.html引入
