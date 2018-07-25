@@ -1,12 +1,18 @@
 #### 1.5.2
 
  **crud and form**
- - 修复： v-model双向数据绑定问题，[ILB57](https://gitee.com/smallweigit/avue/issues/ILB57)
+ - 修复：v-model双向数据绑定问题，[ILB57](https://gitee.com/smallweigit/avue/issues/ILB57)
+ - 新增：readonly属性，[ILEMY]https://gitee.com/smallweigit/avue/issues/ILEMY
+ - 新增：select下拉清空clearable属性，[ILHXH](https://gitee.com/smallweigit/avue/issues/ILHXH)
 
  **crud**
  - 新增：color字典颜色字段，具体看demo例子，[PR7]](https://gitee.com/smallweigit/avue/pulls/7)
+ - 新增：pageSizes自定义分页，[ILHXQ](https://gitee.com/smallweigit/avue/issues/ILHXQ)
  - 优化：formatter函数优化，可以自定义函数，[PR7]](https://gitee.com/smallweigit/avue/pulls/7)
 
+ **其他**
+ - 修复：data数据展示类的组件数据双向绑定问题涉及组件data-box、data-card、data-display、data-icons、data-tabs
+ 
 #### 1.5.1
 
  **其它**

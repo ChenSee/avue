@@ -154,6 +154,7 @@
                    :current-page.sync="page.currentPage"
                    :background="vaildData(option.pageBackground,true)"
                    :page-size="page.pageSize"
+                   :page-sizes="page.pageSizes"
                    @size-change="sizeChange"
                    @current-change="currentChange"
                    layout="total, sizes, prev, pager, next, jumper"
@@ -195,6 +196,7 @@
                            :multiple="column.multiple"
                            :height="setPx(column.formHeight,'auto')"
                            :size="column.size"
+                           :readonly="column.readonly"
                            :clearable="column.clearable"
                            :type="column.type"
                            :minRows="column.minRows"
@@ -296,6 +298,7 @@ export default {
       type: Object,
       default () {
         return {
+          pageSizes: [10, 20, 30, 40, 50, 100],
           total: 0, //总页数
           currentPage: 0, //当前页数
           pageSize: 10, //每页显示多少条

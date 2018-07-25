@@ -21,9 +21,18 @@ export default {
   name: 'AvueDataDisplay',
   data () {
     return {
-      span: this.option.span || 8,
-      data: this.option.data,
-      color: this.option.color || 'rgb(63, 161, 255)'
+
+    }
+  },
+  computed: {
+    span () {
+      return this.option.span || 8
+    },
+    data () {
+      return this.option.data || []
+    },
+    color () {
+      return this.option.color || 'rgb(63, 161, 255)'
     }
   },
   props: {

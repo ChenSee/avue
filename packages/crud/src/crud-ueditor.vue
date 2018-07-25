@@ -5,6 +5,8 @@
                 :placeholder="placeholder ? placeholder : `请输入${label}`"
                 @change="handleChange"
                 ref="myQuillEditor"
+                :readonly="readonly"
+                :disabled="disabled"
                 :options="options">
   </quill-editor>
 

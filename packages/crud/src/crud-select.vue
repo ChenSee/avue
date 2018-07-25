@@ -2,6 +2,8 @@
   <el-select v-model="text"
              :size="size"
              :multiple="multiple"
+             :clearable="clearable"
+             :readonly="readonly"
              :placeholder="placeholder?placeholder:`请选择${label}`"
              @change="handleChange"
              :disabled="disabled">

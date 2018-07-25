@@ -25,11 +25,14 @@ export default {
   name: 'AvueDataIcons',
   data () {
     return {
-      span: this.option.span || 6,
-      data: this.option.data,
-      color: this.option.color || 'rgb(63, 161, 255)',
-      discount: this.option.discount || false
+
     }
+  },
+  computed: {
+    span () { return this.option.span || 4 },
+    data () { return this.option.data },
+    color () { return this.option.color || 'rgb(63, 161, 255)' },
+    discount () { this.option.discount || false }
   },
   props: {
     option: {

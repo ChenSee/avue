@@ -3,6 +3,7 @@
                v-model="text"
                :placeholder="placeholder?placeholder:`请选择${label}`"
                :props="props"
+               :readonly="readonly"
                :clearable="clearable"
                :expand-trigger="expandTrigger"
                :show-all-levels="showAllLevels"

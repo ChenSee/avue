@@ -1,6 +1,7 @@
 <template>
   <el-radio-group v-model="text"
                   @change="handleChange"
+                  :readonly="readonly"
                   :disabled="disabled">
     <el-radio v-for="(item,index) in dic"
               :label="item[valueKey]"

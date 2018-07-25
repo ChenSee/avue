@@ -150,6 +150,7 @@ export default {
       formJson: '',
       user: {},
       page: {
+        // pageSizes: [1, 2, 3, 4],
         total: 0, //总页数
         currentPage: 1, //当前页数
         pageSize: 10, //每页显示多少条
@@ -352,12 +353,10 @@ export default {
         .then(data => {
           setTimeout(() => {
             this.tableData = data.tableData;
-            this.page = {
-              total: data.total,
-              currentPage: this.tablePage,
-              pageSize: data.pageSize,
-            };
-            this.tableLoading = false;
+            this.page.total = data.total,
+              this.page.currentPage = this.tablePage,
+              this.page.pageSize = data.pageSize,
+              this.tableLoading = false;
           }, 1000);
         });
     },

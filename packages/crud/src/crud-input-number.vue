@@ -5,6 +5,7 @@
                    :size="size"
                    :min="minRows"
                    :max="maxRows"
+                   :readonly="readonly"
                    :controls-position="controlsPosition"
                    :label="placeholder?placeholder:`请输入${label}`"
                    :disabled="disabled"></el-input-number>

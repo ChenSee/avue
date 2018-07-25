@@ -5,6 +5,7 @@
              :active-value="getDic(0)[valueKey]"
              :inactive-value="getDic(1)[valueKey]"
              :inactive-text="getDic(1)[labelKey]"
+             :readonly="readonly"
              :disabled="disabled"
              :size="size">
   </el-switch>

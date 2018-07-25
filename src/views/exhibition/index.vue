@@ -1,12 +1,12 @@
 <template>
   <div class="exhibition-contailer">
     <basic-container>
-      <h4>盒子卡片展示</h4>
-      <avue-data-box :option="easyDataOption3"></avue-data-box>
-    </basic-container>
-    <basic-container>
       <h4>数据展示</h4>
       <avue-data-display :option="option"></avue-data-display>
+    </basic-container>
+    <basic-container>
+      <h4>盒子卡片展示</h4>
+      <avue-data-box :option="easyDataOption3"></avue-data-box>
     </basic-container>
     <basic-container>
       <h4>选项卡展示</h4>
@@ -34,25 +34,12 @@ export default {
   data () {
     return {
       option: {
-        span: 8,
-        color: '#15A0FF',
-        data: [
-          {
-            count: 100,
-            title: '日活跃数'
-          },
-          {
-            count: '3,000',
-            title: '月活跃数'
-          },
-          {
-            count: '20,000',
-            title: '年活跃数'
-          }
-        ]
+        // span: 8,
+        // color: '#15A0FF',
+        data: []
       },
       easyDataOption: {
-        span: 8,
+        // span: 8,
         data: [
           {
             title: '分类统计',
@@ -60,7 +47,7 @@ export default {
             count: 7993,
             allcount: 10222,
             text: '当前分类总记录数',
-            color: 'rgb(49, 180, 141)',
+            color: 'rgb(27, 201, 142)',
             key: '类'
           },
           {
@@ -69,7 +56,7 @@ export default {
             count: 3112,
             allcount: 10222,
             text: '当前上传的附件数',
-            color: 'rgb(56, 161, 242)',
+            color: 'rgb(230, 71, 88)',
             key: '附'
           },
           {
@@ -78,40 +65,19 @@ export default {
             count: 908,
             allcount: 10222,
             text: '评论次数',
-            color: 'rgb(117, 56, 199)',
+            color: 'rgb(178, 159, 255)',
             key: '评'
           }
         ]
       },
       easyDataOption0: {
-        span: 6,
-        borderColor: '#fff',
-        data: [
-          {
-            name: '姓名1',
-            src: '/static/img/mock/card/card-1.jpg',
-            text: '介绍1'
-          },
-          {
-            name: '姓名2',
-            src: '/static/img/mock/card/card-2.jpg',
-            text: '介绍2'
-          },
-          {
-            name: '姓名3',
-            src: '/static/img/mock/card/card-3.jpg',
-            text: '介绍3'
-          },
-          {
-            name: '姓名4',
-            src: '/static/img/mock/card/card-4.jpg',
-            text: '介绍4'
-          }
-        ]
+        // span: 6,
+        // borderColor: '#fff',
+        data: []
       },
       easyDataOption1: {
-        color: 'rgb(63, 161, 255)',
-        span: 4,
+        // color: 'rgb(63, 161, 255)',
+        // span: 4,
         data: [
           {
             title: '今日注册',
@@ -146,8 +112,8 @@ export default {
         ]
       },
       easyDataOption2: {
-        color: 'rgb(63, 161, 255)',
-        span: 4,
+        // color: 'rgb(63, 161, 255)',
+        // span: 4,
         discount: true,
         data: [
           {
@@ -177,7 +143,7 @@ export default {
         ]
       },
       easyDataOption3: {
-        span: 8,
+        // span: 8,
         data: [
           {
             title: '错误日志',
@@ -201,9 +167,48 @@ export default {
       }
     }
   },
-  created () { },
+  created () {
+
+  },
   watch: {},
-  mounted () { },
+  mounted () {
+    this.option.data = [
+      {
+        count: 100,
+        title: '日活跃数'
+      },
+      {
+        count: '3,000',
+        title: '月活跃数'
+      },
+      {
+        count: '20,000',
+        title: '年活跃数'
+      }
+    ]
+    this.easyDataOption0.data = [
+      {
+        name: '姓名1',
+        src: '/static/img/mock/card/card-1.jpg',
+        text: '介绍1'
+      },
+      {
+        name: '姓名2',
+        src: '/static/img/mock/card/card-2.jpg',
+        text: '介绍2'
+      },
+      {
+        name: '姓名3',
+        src: '/static/img/mock/card/card-3.jpg',
+        text: '介绍3'
+      },
+      {
+        name: '姓名4',
+        src: '/static/img/mock/card/card-4.jpg',
+        text: '介绍4'
+      }
+    ]
+  },
   computed: {}
 }
 </script>

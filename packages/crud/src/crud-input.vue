@@ -2,6 +2,7 @@
   <el-input :size="size"
             :clearable="clearable"
             v-model="text"
+            :readonly="readonly"
             :type="typeParam"
             :autosize="{ minRows: minRows, maxRows: maxRows}"
             :placeholder="placeholder?placeholder:`请输入${label}`"

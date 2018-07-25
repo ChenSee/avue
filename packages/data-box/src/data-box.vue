@@ -24,8 +24,7 @@ export default {
   name: 'AvueDataBox',
   data () {
     return {
-      span: this.option.span || 6,
-      data: this.option.data || [],
+
     }
   },
   props: {
@@ -34,10 +33,13 @@ export default {
       default: () => { }
     }
   },
+  computed: {
+    span () { return this.option.span || 8 },
+    data () { return this.option.data || [] }
+  },
   created () { },
   mounted () { },
   watch: {},
-  computed: {},
   methods: {}
 }
 </script>

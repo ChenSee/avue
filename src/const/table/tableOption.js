@@ -90,6 +90,8 @@ export default {
             prop: "datetime",
             type: "datetime",
             hide: true,
+            valueFormat: 'yyyy-MM-dd hh:mm:ss',
+            format: 'yyyy-MM-dd hh:mm:ss',
         },
         {
             label: "权限",

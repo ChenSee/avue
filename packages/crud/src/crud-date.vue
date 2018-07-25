@@ -3,6 +3,7 @@
                   v-model="text"
                   :size="size"
                   :format="format"
+                  :readonly="readonly"
                   :value-format="valueFormat"
                   :placeholder="placeholder?placeholder:`请输入${label}`"
                   @change="handleChange"

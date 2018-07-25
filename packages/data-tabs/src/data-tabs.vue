@@ -29,8 +29,15 @@ export default {
   name: 'AvueDataTabs',
   data () {
     return {
-      span: this.option.span || 6,
-      data: this.option.data || []
+
+    }
+  },
+  computed: {
+    span () {
+      return this.option.span || 8
+    },
+    data () {
+      return this.option.data || []
     }
   },
   props: {

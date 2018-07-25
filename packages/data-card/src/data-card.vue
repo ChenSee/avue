@@ -23,11 +23,7 @@ export default {
   name: 'AvueDataCard',
   data () {
     return {
-      span: this.option.span || 6,
-      data: this.option.data || [],
-      colorText: this.option.colorText || '#fff',
-      bgText: this.option.bgText || '#2e323f',
-      borderColor: this.option.borderColor || '#2e323f'
+
     }
   },
   props: {
@@ -36,10 +32,26 @@ export default {
       default: () => { }
     }
   },
+  computed: {
+    span () {
+      return this.option.span || 6
+    },
+    data () {
+      return this.option.data || []
+    },
+    colorText () {
+      return this.option.colorText || '#fff'
+    },
+    bgText () {
+      return this.option.bgText || '#2e323f';
+    },
+    borderColor () {
+      return this.option.borderColor || '#2e323f';
+    }
+  },
   created () { },
   mounted () { },
   watch: {},
-  computed: {},
   methods: {}
 }
 </script>

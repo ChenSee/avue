@@ -6,6 +6,7 @@
                   :value-format="valueFormat"
                   :placeholder="placeholder?placeholder:`请输入${label}`"
                   @change="handleChange"
+                  :readonly="readonly"
                   :disabled="disabled"> </el-time-picker>
 </template>
 

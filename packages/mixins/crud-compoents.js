@@ -9,6 +9,10 @@ export default function() {
                 type: String,
                 default: ''
             },
+            readonly: {
+                type: Boolean,
+                default: false
+            },
             disabled: {
                 type: Boolean,
                 default: false

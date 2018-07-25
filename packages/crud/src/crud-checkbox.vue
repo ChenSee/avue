@@ -1,5 +1,7 @@
 <template>
   <el-checkbox-group v-model="text"
+                     :readonly="readonly"
+                     :disabled="disabled"
                      @change="handleChange">
     <el-checkbox v-for="(item,index) in dic"
                  :label="item[valueKey]"
