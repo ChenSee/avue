@@ -1,39 +1,43 @@
 <template>
   <div class="crud-container pull-auto">
     <div class="crud-header">
-      <el-form :model="searchForm"
-               :inline="true"
-               ref="searchForm"
-               v-if="searchFlag">
-        <!-- 循环列搜索框 -->
-        <el-form-item :label="column.label"
-                      :prop="column.prop"
-                      v-for="(column,index) in option.column"
-                      :key="index"
-                      v-if="column.search">
-          <component :size="option.searchSize"
-                     :is="getSearchType(column.type)"
-                     v-model="searchForm[column.prop]"
-                     clearable:type="column.type"
-                     :placeholder="column.label"
-                     :dic="setDic(column.dicData,DIC[column.dicData])"></component>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary"
-                     @click="searchChnage"
-                     icon="el-icon-search"
-                     :size="option.searchSize">搜索</el-button>
-          <el-button @click="searchReset"
-                     icon="el-icon-delete"
-                     :size="option.searchSize">清空</el-button>
-        </el-form-item>
-      </el-form>
+      <el-collapse-transition>
+        <el-form :model="searchForm"
+                 :inline="true"
+                 ref="searchForm"
+                 v-if="searchFlag && searchShow ">
+          <!-- 循环列搜索框 -->
+          <el-form-item :label="column.label"
+                        :prop="column.prop"
+                        v-for="(column,index) in option.column"
+                        :key="index"
+                        v-if="column.search">
+            <component :size="option.searchSize"
+                       :is="getSearchType(column.type)"
+                       v-model="searchForm[column.prop]"
+                       :type="column.type"
+                       clearable:type="column.type"
+                       :placeholder="column.label"
+                       :dic="setDic(column.dicData,DIC[column.dicData])"></component>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary"
+                       @click="searchChnage"
+                       icon="el-icon-search"
+                       :size="option.searchSize">搜索</el-button>
+            <el-button @click="searchReset"
+                       icon="el-icon-delete"
+                       :size="option.searchSize">清空</el-button>
+          </el-form-item>
+        </el-form>
+      </el-collapse-transition>
     </div>
     <!-- 表格功能列 -->
     <div class="crud-menu">
       <div class="crud-menu_left">
         <el-button type="primary"
                    @click="rowAdd"
+                   icon="el-icon-plus"
                    v-if="vaildData(option.addBtn,true)"
                    size="small">新 增</el-button>
         <slot name="menuLeft"></slot>
@@ -50,8 +54,23 @@
                    size="small"
                    @click="showClomnuBox=true"
                    v-if="vaildData(option.showClomnuBtn,true)"></el-button>
+        <el-button icon="el-icon-search"
+                   circle
+                   size="small"
+                   @click="searchShow=!searchShow"
+                   v-if="vaildData(option.showSearchBtn,true) && searchFlag"></el-button>
       </div>
     </div>
+    <!-- <el-tag class="avue-tip"
+            v-if="vaildData(option.tip,true) && option.selection">
+      <i class="el-icon-info">&nbsp;</i>
+      <span class="name">当前表格已选择
+        <span class="count">{{selectLen}}</span> 项</span>
+      <span class="menu">
+        <span @click="selectClear"
+              v-if="vaildData(option.selectClearBtn,true) && option.selection">清空</span>
+      </span>
+    </el-tag> -->
     <el-table :data="data"
               :stripe="option.stripe"
               :show-header="option.showHeader"
@@ -114,6 +133,7 @@
         <template slot-scope="scope">
           <slot :row="scope.row"
                 :dic="setDic(column.dicData,DIC[column.dicData])"
+                :label="findByvalue(setDic(column.dicData,DIC[column.dicData]),scope.row[column.prop],(column.props || option.props))"
                 :name="column.prop"
                 v-if="column.solt"></slot>
           <template v-else>
@@ -164,74 +184,37 @@
                :fullscreen="vaildData(option.formFullscreen,false)"
                :modal-append-to-body="false"
                :append-to-body="true"
-               :title="boxType==0?'新增':'编辑'"
+               :title="boxType=='add'?'新增':'编辑'"
                :visible.sync="boxVisible"
                :width="vaildData(option.formWidth,'50%')"
                :before-close="hide">
-      <el-form ref="tableForm"
-               class="crud-form"
-               :model="tableForm"
-               :label-position="option.labelPosition"
-               :label-width="setPx(option.labelWidth,80)"
-               :rules="tableFormRules">
-        <el-row :gutter="20"
-                :span="24">
-          <template v-for="(column,index) in option.column">
-            <el-col :span="column.span || 12"
-                    v-if="boxType==0?vaildData(column.addVisdiplay,true):vaildData(column.editVisdiplay,true)">
-              <el-form-item :style="{height:setPx(column.formHeight,'auto')}"
-                            :label="column.label"
-                            :prop="column.prop"
-                            :label-width="setPx(column.labelWidth,option.labelWidth || 80)">
-                <slot :value="tableForm[column.prop]"
-                      :column="column"
-                      :dic="setDic(column.dicData,DIC[column.dicData])"
-                      :name="column.prop+'Form'"
-                      v-if="column.formsolt"></slot>
-                <component :is="getComponent(column.type)"
-                           v-else
-                           v-model="tableForm[column.prop]"
-                           :props="column.props || option.props"
-                           :precision="column.precision"
-                           :multiple="column.multiple"
-                           :height="setPx(column.formHeight,'auto')"
-                           :size="column.size"
-                           :readonly="column.readonly"
-                           :clearable="column.clearable"
-                           :type="column.type"
-                           :minRows="column.minRows"
-                           :maxRows="column.maxRows"
-                           :step="column.step"
-                           :controls-position="column.controlsPosition"
-                           :expand-trigger="column.expandTrigger"
-                           :show-all-levels="column.showAllLevels"
-                           :filterable="column.filterable"
-                           :separator="column.separator"
-                           :border="column.border"
-                           :min="column.min"
-                           :max="column.max"
-                           :label="column.label"
-                           :placeholder="column.placeholder"
-                           :dic="setDic(column.dicData,DIC[column.dicData])"
-                           :disabled="boxType==0?vaildData(column.addDisabled,false):vaildData(column.editDisabled,false)"
-                           :format="column.format"
-                           :value-format="column.valueFormat"></component>
-              </el-form-item>
-            </el-col>
+      <div class="avue-dialog">
+        <avue-form v-model="tableForm"
+                   ref="tableForm"
+                   :option="formOption">
+          <template slot-scope="scope"
+                    v-for="(item,index) in option.column"
+                    :slot="item.prop">
+            <slot :value="scope.value"
+                  :column="scope.column"
+                  :dic="scope.dic"
+                  :name="item.prop+'Form'"
+                  v-if="item.formsolt"></slot>
           </template>
-        </el-row>
-      </el-form>
+        </avue-form>
+      </div>
       <span slot="footer"
             class="dialog-footer">
         <el-button type="primary"
                    @click="rowUpdate"
-                   v-if="boxType==1">修 改</el-button>
+                   v-if="boxType=='edit'">修 改</el-button>
         <el-button type="primary"
                    @click="rowSave"
-                   v-else>新 增</el-button>
+                   v-else-if="boxType=='add'">新 增</el-button>
         <el-button @click="hide">取 消</el-button>
       </span>
     </el-dialog>
+    <!-- 动态列 -->
     <el-dialog lock-scroll
                :modal-append-to-body="false"
                :append-to-body="true"
@@ -264,9 +247,10 @@ export default {
         tableForm: {},
         searchForm: {}
       },
+      searchShow: false,
       searchForm: {},
       boxVisible: false,
-      boxType: 0,
+      boxType: 'add',
       showClomnuIndex: [],
       showClomnuBox: false,
       showClomnuList: [],
@@ -281,8 +265,23 @@ export default {
     this.showClomnuInit();
   },
   computed: {
+    selectLen () {
+      return this.tableSelect ? this.tableSelect.length : 0;
+    },
     searchFlag: function () {
-      return validatenull(this.searchForm) ? false : true;
+      if (validatenull(this.searchForm)) {
+        this.searchShow = false;
+        return false;
+      } else {
+        this.searchShow = true;
+        return true
+      }
+    },
+    formOption: function () {
+      let option = Object.assign({}, this.option);
+      option.submitBtn = false;
+      option.boxType = this.boxType;
+      return option;
     }
   },
   mounted () { },
@@ -298,10 +297,10 @@ export default {
       type: Object,
       default () {
         return {
-          pageSizes: [10, 20, 30, 40, 50, 100],
           total: 0, //总页数
           currentPage: 0, //当前页数
           pageSize: 10, //每页显示多少条
+          pageSizes: [10, 20, 30, 40, 50, 100],
           background: true //背景颜色
         };
       }
@@ -326,8 +325,11 @@ export default {
     }
   },
   methods: {
+    selectClear () {
+      this.$refs.table.clearSelection();
+    },
     indexMethod (index) {
-      return (index + 1) + ((this.page.currentPage - 1) * this.page.pageSize)
+      return (index + 1) + (((this.page.currentPage || 1) - 1) * (this.page.pageSize || 10))
     },
     showClomnu () { },
     refreshChange () {
@@ -361,6 +363,7 @@ export default {
       this.defaultForm = this.formInitVal(this.option.column);
       this.tableForm = Object.assign({}, this.defaultForm.tableForm);
       this.searchForm = Object.assign({}, this.defaultForm.searchForm);
+      this.formVal();
     },
     //搜索清空
     searchReset () {
@@ -437,15 +440,17 @@ export default {
     },
     // 新增
     rowAdd () {
-      this.boxType = 0;
+      this.boxType = 'add';
       this.tableForm = Object.assign({}, this.defaultForm.tableForm);
+      this.$emit("input", this.tableForm);
       this.show();
     },
     // 编辑
     rowEdit (row, index) {
       this.tableForm = Object.assign({}, row);
+      this.$emit("input", this.tableForm);
       this.tableIndex = index;
-      this.boxType = 1;
+      this.boxType = 'edit';
       this.show();
     },
     // 删除
@@ -454,30 +459,30 @@ export default {
     },
     //保存
     rowSave () {
-      this.$refs["tableForm"].validate(valid => {
-        if (valid) {
-          this.$emit("row-save", Object.assign({}, this.tableForm), this.hide);
-        }
+      this.$refs["tableForm"].validate().then(res => {
+        this.$emit("row-save", Object.assign({}, this.tableForm), this.hide);
       });
     },
     //更新
     rowUpdate () {
-      this.$refs["tableForm"].validate(valid => {
-        if (valid) {
-          const index = this.tableIndex;
-          this.$emit(
-            "row-update",
-            Object.assign({}, this.tableForm),
-            index,
-            this.hide
-          );
-        }
-      });
+      this.$refs["tableForm"].validate().then(res => {
+        const index = this.tableIndex;
+        this.$emit(
+          "row-update",
+          Object.assign({}, this.tableForm),
+          index,
+          this.hide
+        );
+      })
     },
     //显示表单
     show (cancel) {
       const callack = () => {
         if (cancel !== true) {
+          this.$nextTick(() => {
+            // 对表单进行重置，字段移除校验结果，值重置为初始值
+            this.$refs["tableForm"].clearValidate();
+          });
           this.boxVisible = true;
         }
       };
@@ -488,10 +493,6 @@ export default {
     hide (cancel) {
       const callack = () => {
         if (cancel !== false) {
-          this.$nextTick(() => {
-            // 对表单进行重置，字段移除校验结果，值重置为初始值
-            this.$refs["tableForm"].resetFields();
-          });
           this.boxVisible = false;
         }
       };
@@ -502,10 +503,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .crud-container {
   margin: 0 auto;
   width: 99%;
+  .el-table__header th {
+    word-break: break-word;
+    color: rgba(0, 0, 0, 0.85);
+    background: #fafafa;
+  }
 }
 .crud-pagination {
   margin-top: 15px;
@@ -520,6 +526,7 @@ export default {
     padding: 12px 25px;
   }
 }
+
 .crud-menu {
   position: relative;
   width: 100%;

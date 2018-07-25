@@ -9,10 +9,6 @@ export default function() {
                 type: String,
                 default: ''
             },
-            readonly: {
-                type: Boolean,
-                default: false
-            },
             disabled: {
                 type: Boolean,
                 default: false
@@ -47,6 +43,7 @@ export default function() {
                 type: Object,
                 default () {
                     return {
+                        id: 'id',
                         label: 'label',
                         value: 'value',
                         children: 'children'
@@ -73,6 +70,9 @@ export default function() {
             },
             childrenKey: function() {
                 return this.props.children || 'children';
+            },
+            idKey: function() {
+                return this.props.id || 'id';
             }
         },
         created() {

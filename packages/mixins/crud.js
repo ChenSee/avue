@@ -31,7 +31,7 @@ export default function() {
             crudCascader,
             crudInputNumber,
             crudUeditor,
-            crudSwitch
+            crudSwitch,
         },
         watch: {
             value: {
@@ -46,18 +46,6 @@ export default function() {
                 },
                 deep: true
             },
-            tableForm: {
-                handler(n, o) {
-                    this.$emit("input", this.tableForm);
-                },
-                deep: true
-            },
-            form: {
-                handler(n, o) {
-                    this.$emit("input", this.form);
-                },
-                deep: true
-            }
         },
         data() {
             return {
@@ -77,12 +65,18 @@ export default function() {
                 this.rulesInit();
                 //初始化字典
                 this.dicInit();
-                //初始化表单
+                //初始化表单formInitVal
                 this.formInit();
+
             },
             dicInit() {
                 this.option.column.forEach(ele => {
                     if (!validatenull(ele.dicUrl) && ele.cascaderFirst) {
+                        this.dicCascaderList.push({
+                            dicUrl: ele.dicUrl,
+                            dicData: ele.dicData,
+                        })
+                    } else if (!validatenull(ele.dicUrl) && ele.dicFlag) {
                         this.dicCascaderList.push({
                             dicUrl: ele.dicUrl,
                             dicData: ele.dicData,

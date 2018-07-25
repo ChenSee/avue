@@ -1,5 +1,5 @@
 <template>
-  <div class="from-container pull-auto">
+  <div class="from">
     <el-form ref="form"
              :model="form"
              :label-position="option.labelPosition"
@@ -8,50 +8,71 @@
       <el-row :gutter="20"
               :span="24">
         <template v-for="(column,index) in option.column">
-          <el-col :span="column.span||12">
-            <el-form-item :label="column.label"
-                          :prop="column.prop"
-                          :label-width="setPx(column.labelWidth,option.labelWidth || 80)">
-              <slot :value="form[column.prop]"
-                    :column="column"
-                    :dic="setDic(column.dicData,DIC[column.dicData])"
-                    :name="column.prop"
-                    v-if="column.formsolt"></slot>
-              <component :is="getComponent(column.type)"
-                         :props="column.props || option.props"
-                         v-else
-                         v-model="form[column.prop]"
-                         :precision="column.precision"
-                         :multiple="column.multiple"
-                         :placeholder="column.placeholder"
-                         :step="column.step"
-                         :controls-position="column.controlsPosition"
-                         :expand-trigger="column.expandTrigger"
-                         :filterable="column.filterable"
-                         :separator="column.separator"
-                         :border="column.border"
-                         :min="column.min"
-                         :max="column.max"
-                         :label="column.label"
-                         :clearable="column.clearable"
-                         :type="column.type"
-                         :minRows="column.minRows"
-                         :maxRows="column.maxRows"
-                         :dic="setDic(column.dicData,DIC[column.dicData])"
-                         :disabled="column.disabled"
-                         :format="column.format"
-                         :value-format="column.valueFormat"
-                         @change="column.cascader?change(index):''"></component>
-            </el-form-item>
-          </el-col>
+          <div :class="{'avue-row':column.row}"
+               v-if="vaildVisdiplay(column)">
+            <el-col :span="column.span||12">
+              <el-form-item :label="column.label"
+                            :prop="column.prop"
+                            :label-width="setPx(column.labelWidth,option.labelWidth || 80)">
+                <slot :value="form[column.prop]"
+                      :column="column"
+                      :dic="setDic(column.dicData,DIC[column.dicData])"
+                      :name="column.prop"
+                      v-if="column.formsolt"></slot>
+                <component :is="getComponent(column.type)"
+                           v-else
+                           :props="column.props || option.props"
+                           v-model="form[column.prop]"
+                           :precision="column.precision"
+                           :multiple="column.multiple"
+                           :placeholder="column.placeholder"
+                           :step="column.step"
+                           :controls-position="column.controlsPosition"
+                           :expand-trigger="column.expandTrigger"
+                           :size="column.size"
+                           :colors="column.colors"
+                           :iconClasses="column.iconClasses"
+                           :voidIconClass="column.voidIconClass"
+                           :showText="column.showText"
+                           :texts="column.texts"
+                           :filterable="column.filterable"
+                           :separator="column.separator"
+                           :border="column.border"
+                           :minlength="column.minlength"
+                           :maxlength="column.maxlength"
+                           :prefixIcon="column.prefixIcon"
+                           :suffixIcon="column.suffixIcon"
+                           :pickerOptions="column.pickerOptions"
+                           :defaultTime="column.defaultTime"
+                           :min="column.min"
+                           :max="column.max"
+                           :changeoOnSelect="column.changeoOnSelect"
+                           :label="column.label"
+                           :clearable="column.clearable"
+                           :startPlaceholder="column.startPlaceholder"
+                           :endPlaceholder="column.endPlaceholder"
+                           :type="column.type"
+                           :minRows="column.minRows"
+                           :maxRows="column.maxRows"
+                           :format="column.format"
+                           :value-format="column.valueFormat"
+                           :dic="setDic(column.dicData,DIC[column.dicData])"
+                           :disabled="vaildDisabled(column)"
+                           @change="column.cascader?change(index):''"></component>
+                <!-- <p class="avue-tip">{{column.tip}}</p> -->
+              </el-form-item>
+            </el-col>
+          </div>
         </template>
         <el-col :span="24"
-                v-if="vaildData(option.submitBtn,true)">
+                v-if="vaildData(option.menuBtn,true)">
           <el-form-item label-width="0">
             <div class="form-menu"
                  :class="menuPostion">
               <el-button type="primary"
-                         @click="submit">{{vaildData(option.submitText,'提交')}}</el-button>
+                         @click="submit"
+                         v-if="vaildData(option.submitBtn,true)">{{vaildData(option.submitText,'提交')}}</el-button>
+              <slot name="menuForm"></slot>
             </div>
           </el-form-item>
         </el-col>
@@ -85,6 +106,9 @@ export default {
       } else {
         return "is-center";
       }
+    },
+    boxType: function () {
+      return this.option.boxType;
     }
   },
   props: {
@@ -95,6 +119,27 @@ export default {
     }
   },
   methods: {
+    // 验证表单是否禁止
+    vaildDisabled (column) {
+      if (!(this.boxType)) {
+        return column.disabled || false;
+      } else if (this.boxType == 'add') {
+        return this.vaildData(column.addDisabled, false)
+      } else if (this.boxType == 'edit') {
+        return this.vaildData(column.editDisabled, false)
+      }
+    },
+    //验证表单是否显隐
+    vaildVisdiplay (column) {
+      if (!(this.boxType)) {
+        return column.visdiplay || true;
+      } else if (this.boxType == 'add') {
+        return this.vaildData(column.addVisdiplay, true)
+      } else if (this.boxType == 'edit') {
+        return this.vaildData(column.editVisdiplay, true)
+      }
+
+    },
     rulesInit () {
       this.formRules = {};
       this.option.column.forEach(ele => {
@@ -120,15 +165,12 @@ export default {
       });
     },
     formInit () {
-      let formObj = this.formInitVal(this.option.column);
-      let form = Object.assign({}, this.value)
-      for (let o in form) {
-        formObj.tableForm[o] = form[o];
-      }
-      this.form = Object.assign({}, formObj.tableForm);
+      const column = this.option.column
+      this.form = this.formInitVal(column).tableForm;
+      this.formVal();
       for (let i = 0; i < this.option.column.length; i++) {
         const ele = this.option.column[i];
-        if (ele.cascaderFirst) {
+        if (ele.cascaderFirst && ele.type == 'select') {
           const cascader = [].concat(ele.cascader)
           const cascaderLen = ele.cascader.length - 1;
           if (!validatenull(this.form[ele.prop])) this.change(i);
@@ -148,6 +190,20 @@ export default {
       }
       this.$emit("input", this.form);
     },
+    clearValidate () {
+      this.$refs["form"].clearValidate();
+    },
+    validate () {
+      return new Promise((resolve, reject) => {
+        this.$refs["form"].validate(valid => {
+          if (valid) {
+            resolve();
+          } else {
+            reject();
+          }
+        });
+      })
+    },
     submit () {
       this.$refs["form"].validate(valid => {
         if (valid) {
@@ -159,9 +215,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.from-container {
+<style lang="scss">
+.from {
   padding: 8px 10px;
+}
+.from {
+  .el-checkbox + .el-checkbox {
+    margin-left: 20px;
+  }
 }
 .form-menu {
   width: 100%;
