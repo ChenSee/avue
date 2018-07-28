@@ -16,6 +16,7 @@ export default [{
     children: [{
         path: 'index',
         name: '个人信息',
+        // meta: { tag: false },配置后不会添加到tag里
         component: _import('info/index', 'views')
     }]
 }, {

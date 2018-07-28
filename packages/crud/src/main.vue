@@ -181,13 +181,14 @@
                    :total="page.total"></el-pagination>
     <!-- 表单 -->
     <el-dialog lock-scroll
+               :custom-class="vaildData(option.customClass,'')"
                :fullscreen="vaildData(option.formFullscreen,false)"
                :modal-append-to-body="false"
                :append-to-body="true"
                :title="boxType=='add'?'新增':'编辑'"
                :visible.sync="boxVisible"
                :width="vaildData(option.formWidth,'50%')"
-               :before-close="hide">
+               @close="hide">
       <div class="avue-dialog">
         <avue-form v-model="tableForm"
                    ref="tableForm"
@@ -205,6 +206,9 @@
       </div>
       <span slot="footer"
             class="dialog-footer">
+        <slot name="menuForm"
+              :row="tableForm"
+              :type="boxType"></slot>
         <el-button type="primary"
                    @click="rowUpdate"
                    v-if="boxType=='edit'">修 改</el-button>
@@ -280,6 +284,7 @@ export default {
     formOption: function () {
       let option = Object.assign({}, this.option);
       option.submitBtn = false;
+      option.submitPostion = 'right';
       option.boxType = this.boxType;
       return option;
     }
@@ -288,7 +293,9 @@ export default {
   props: {
     value: {
       type: Object,
-      default: () => { }
+      default: () => {
+        return {}
+      }
     },
     beforeClose: Function,
     beforeOpen: Function,
@@ -343,14 +350,17 @@ export default {
     },
     showClomnuInit: function () {
       this.option.column.forEach((ele, index) => {
-        let obj = {
-          label: ele.label,
-          index: index
-        };
         if (validatenull(ele.hide)) {
           this.showClomnuIndex.push(index);
         }
-        this.showClomnuList.push(Object.assign({}, obj));
+        if (ele.showClomnu != false) {
+
+          let obj = {
+            label: ele.label,
+            index: index
+          };
+          this.showClomnuList.push(Object.assign({}, obj));
+        }
       });
     },
     formVal () {
@@ -480,7 +490,6 @@ export default {
       const callack = () => {
         if (cancel !== true) {
           this.$nextTick(() => {
-            // 对表单进行重置，字段移除校验结果，值重置为初始值
             this.$refs["tableForm"].clearValidate();
           });
           this.boxVisible = true;
@@ -494,6 +503,10 @@ export default {
       const callack = () => {
         if (cancel !== false) {
           this.boxVisible = false;
+          this.$nextTick(() => {
+            this.$refs["tableForm"].resetForm();
+            this.$emit("input", this.tableForm);
+          });
         }
       };
       if (typeof this.beforeClose === "function") this.beforeClose(callack);
@@ -550,6 +563,30 @@ export default {
     .el-button {
       margin-left: 5px;
     }
+  }
+}
+.crud-dialog {
+  border-radius: 5px;
+  box-shadow: 10px 10px 15px #666;
+  .el-dialog__header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 12px 20px;
+    background-color: #409eff;
+  }
+  .el-dialog__close {
+    color: #fff;
+    font-size: 18px;
+    &:hover {
+      color: #ffddff;
+    }
+  }
+  .el-dialog__title {
+    color: #fff;
+    font-size: 18px;
+  }
+  .el-dialog__headerbtn {
+    top: 18px;
   }
 }
 .crud--overflow {

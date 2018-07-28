@@ -27,10 +27,19 @@
                            :multiple="column.multiple"
                            :placeholder="column.placeholder"
                            :step="column.step"
+                           :range="column.range"
+                           :showStops="column.showStops"
+                           :showInput="column.showInput"
                            :controls-position="column.controlsPosition"
                            :expand-trigger="column.expandTrigger"
                            :size="column.size"
                            :colors="column.colors"
+                           :action="column.action"
+                           :limit="column.limit"
+                           :tip="column.tip"
+                           :listType="column.listType"
+                           :drag="column.drag"
+                           :showFileList="column.showFileList"
                            :iconClasses="column.iconClasses"
                            :voidIconClass="column.voidIconClass"
                            :showText="column.showText"
@@ -55,6 +64,7 @@
                            :minRows="column.minRows"
                            :maxRows="column.maxRows"
                            :format="column.format"
+                           :formatTooltip="column.formatTooltip"
                            :value-format="column.valueFormat"
                            :dic="setDic(column.dicData,DIC[column.dicData])"
                            :disabled="vaildDisabled(column)"
@@ -66,7 +76,7 @@
         </template>
         <el-col :span="24"
                 v-if="vaildData(option.menuBtn,true)">
-          <el-form-item label-width="0">
+          <el-form-item :label-width="menuWidth">
             <div class="form-menu"
                  :class="menuPostion">
               <el-button type="primary"
@@ -100,6 +110,13 @@ export default {
   },
   mounted () { },
   computed: {
+    menuWidth: function () {
+      if (this.option.submitPostion === 'left') {
+        return '';
+      } else {
+        return '0'
+      }
+    },
     menuPostion: function () {
       if (this.option.submitPostion) {
         return "is-" + this.option.submitPostion;
@@ -195,7 +212,7 @@ export default {
     },
     validate () {
       return new Promise((resolve, reject) => {
-        this.$refs["form"].validate(valid => {
+        this.$refs.form.validate(valid => {
           if (valid) {
             resolve();
           } else {
@@ -203,6 +220,10 @@ export default {
           }
         });
       })
+    },
+    resetForm () {
+      this.$refs.form.resetFields();
+
     },
     submit () {
       this.$refs["form"].validate(valid => {

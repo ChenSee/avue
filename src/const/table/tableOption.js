@@ -25,6 +25,7 @@ export default {
             sortable: true,
             search: true,
             solt: true,
+            showCloumn: false,
             placeholder: '自定义输入placeholder',
             rules: [{
                 required: true,

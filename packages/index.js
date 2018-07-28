@@ -54,24 +54,4 @@ const install = function(Vue, axios, opts = {}) {
 if (typeof window !== 'undefined' && window.Vue && window.axios) {
     install(window.Vue, window.axios);
 }
-export default {
-    version: '1.5.2',
-    Crud,
-    Form,
-    CrudCheckbox,
-    CrudDate,
-    CrudTime,
-    CrudInput,
-    CrudRadio,
-    CrudSelect,
-    CrudCascader,
-    CrudNumberInput,
-    CrudUeditor,
-    CrudSwitch,
-    DataDisplay,
-    DataCard,
-    DataIcons,
-    DataTabs,
-    DataBox,
-    TableTree
-}
+export default install

@@ -1,3 +1,17 @@
+#### 1.5.3
+
+ **crud and form**
+ - 优化：优化底层代码，修复未知问题
+ - 新增：局部字典dicUrl的属性和dicFlag关闭字典请求
+
+ **crud**
+ - 新增：showSearchBtn属性，控制search的显隐
+ - 新增：列属性新增showClomnu，控制列是否支持动态设置显隐
+ - 优化：formatter函数优化，可以自定义函数，[PR7]](https://gitee.com/smallweigit/avue/pulls/7)
+
+ **其他**
+ - 新增：路由meta中的tag，是否添加到tags导航栏里
+
 #### 1.5.2
 
  **crud and form**

@@ -21,6 +21,7 @@ export default {
         label: '城市',
         prop: 'city',
         type: 'select',
+        dicFlag: false,
         dicUrl: `${baseUrl}/getCity/{{key}}`,
         dicData: 'city',
         rules: [{
@@ -32,6 +33,7 @@ export default {
         label: '地区',
         prop: 'area',
         type: 'select',
+        dicFlag: false,
         dicUrl: `${baseUrl}/getArea/{{key}}`,
         dicData: 'area',
         rules: [{

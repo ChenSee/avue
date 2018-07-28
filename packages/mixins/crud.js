@@ -12,6 +12,7 @@ import crudTime from "../crud/src/crud-time";
 import crudInputNumber from '../crud/src/crud-input-number';
 import crudUeditor from '../crud/src/crud-ueditor';
 import crudSwitch from '../crud/src/crud-switch';
+import { Alert } from "../../node_modules/element-ui";
 export default function() {
     return {
         props: {
@@ -34,6 +35,12 @@ export default function() {
             crudSwitch,
         },
         watch: {
+            tableForm: {
+                handler(n, o) {
+                    this.$emit('input', n);
+                },
+                deep: true
+            },
             value: {
                 handler(n, o) {
                     this.formVal();
@@ -71,17 +78,12 @@ export default function() {
             },
             dicInit() {
                 this.option.column.forEach(ele => {
-                    if (!validatenull(ele.dicUrl) && ele.cascaderFirst) {
+                    if (!validatenull(ele.dicUrl) && this.vaildData(ele.dicFlag, true)) {
                         this.dicCascaderList.push({
                             dicUrl: ele.dicUrl,
                             dicData: ele.dicData,
                         })
-                    } else if (!validatenull(ele.dicUrl) && ele.dicFlag) {
-                        this.dicCascaderList.push({
-                            dicUrl: ele.dicUrl,
-                            dicData: ele.dicData,
-                        })
-                    } else if (validatenull(ele.dicUrl) && ele.dicData && typeof ele.dicData == 'string') {
+                    } else if (!validatenull(ele.dicData) && typeof ele.dicData == 'string') {
                         this.dicList.push(ele.dicData)
                     }
                 })
@@ -125,7 +127,7 @@ export default function() {
                             if (validatenull(this.option.dicUrl)) {
                                 resolve(locaDic[ele]);
                             } else {
-                                this.GetDicByType(`${this.option.dicUrl}/${ele}`).then(function(res) {
+                                this.GetDicByType(`${this.option.dicUrl.replace('{{key}}',ele.dicData)}`).then(function(res) {
                                     resolve(res);
                                 })
                             }
@@ -133,7 +135,7 @@ export default function() {
                     })
                     cascaderList.forEach(ele => {
                         result.push(new Promise((resolve, reject) => {
-                            this.GetDicByType(ele.dicUrl, ele.dicData).then(function(res) {
+                            this.GetDicByType(`${ele.dicUrl.replace('{{key}}',ele.dicData)}`).then(function(res) {
                                 list.push(ele.dicData);
                                 resolve(res);
                             })
