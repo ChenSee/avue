@@ -1,6 +1,6 @@
 {
     "name": "avue-cli",
-    "version": "1.5.3",
+    "version": "1.5.4-rc1",
     "main": "lib/avue.js",
     "description": "快速crud构建脚手架",
     "author": "smallwei <1634566606@qq.com>",
