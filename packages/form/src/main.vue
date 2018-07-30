@@ -9,7 +9,8 @@
               :span="24">
         <template v-for="(column,index) in option.column">
           <div :class="{'avue-row':column.row}"
-               v-if="vaildVisdiplay(column)">
+               v-if="vaildVisdiplay(column)"
+               :key="index">
             <el-col :span="column.span||12">
               <el-form-item :label="column.label"
                             :prop="column.prop"
@@ -132,7 +133,9 @@ export default {
     value: {
       type: Object,
       required: true,
-      default: {}
+      default: () => {
+        return {};
+      }
     }
   },
   methods: {

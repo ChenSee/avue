@@ -133,7 +133,7 @@
         <template slot-scope="scope">
           <slot :row="scope.row"
                 :dic="setDic(column.dicData,DIC[column.dicData])"
-                :label="findByvalue(setDic(column.dicData,DIC[column.dicData]),scope.row[column.prop],(column.props || option.props))"
+                :label="detail(scope.row,column)"
                 :name="column.prop"
                 v-if="column.solt"></slot>
           <template v-else>
@@ -154,12 +154,12 @@
             <el-button type="primary"
                        icon="el-icon-edit"
                        size="small"
-                       @click.stop.safe="rowEdit(scope.row,scope.$index)"
+                       @click.stop.self="rowEdit(scope.row,scope.$index)"
                        v-if="vaildData(option.editBtn,true)">编 辑</el-button>
             <el-button type="danger"
                        icon="el-icon-delete"
                        size="small"
-                       @click.stop.safe="rowDel(scope.row,scope.$index)"
+                       @click.stop.self="rowDel(scope.row,scope.$index)"
                        v-if="vaildData(option.delBtn,true)">删 除</el-button>
           </template>
           <slot :row="scope.row"
@@ -194,7 +194,7 @@
                    ref="tableForm"
                    :option="formOption">
           <template slot-scope="scope"
-                    v-for="(item,index) in option.column"
+                    v-for="item in option.column"
                     :slot="item.prop">
             <slot :value="scope.value"
                   :column="scope.column"
@@ -215,7 +215,7 @@
         <el-button type="primary"
                    @click="rowSave"
                    v-else-if="boxType=='add'">新 增</el-button>
-        <el-button @click="hide">取 消</el-button>
+        <el-button @click="closeDialog">取 消</el-button>
       </span>
     </el-dialog>
     <!-- 动态列 -->
@@ -272,7 +272,7 @@ export default {
     selectLen () {
       return this.tableSelect ? this.tableSelect.length : 0;
     },
-    searchFlag: function () {
+    searchFlag () {
       if (validatenull(this.searchForm)) {
         this.searchShow = false;
         return false;
@@ -281,7 +281,7 @@ export default {
         return true
       }
     },
-    formOption: function () {
+    formOption () {
       let option = Object.assign({}, this.option);
       option.submitBtn = false;
       option.submitPostion = 'right';
@@ -332,6 +332,9 @@ export default {
     }
   },
   methods: {
+    closeDialog () {
+      this.boxVisible = false
+    },
     selectClear () {
       this.$refs.table.clearSelection();
     },
@@ -439,7 +442,8 @@ export default {
             typeof column.dicData == "string"
               ? this.DIC[column.dicData]
               : column.dicData,
-            result
+            result,
+            (column.props || this.option.props)
           );
         }
       }
@@ -469,19 +473,19 @@ export default {
     },
     //保存
     rowSave () {
-      this.$refs["tableForm"].validate().then(res => {
-        this.$emit("row-save", Object.assign({}, this.tableForm), this.hide);
+      this.$refs["tableForm"].validate().then(() => {
+        this.$emit("row-save", Object.assign({}, this.tableForm), this.closeDialog);
       });
     },
     //更新
     rowUpdate () {
-      this.$refs["tableForm"].validate().then(res => {
+      this.$refs["tableForm"].validate().then(() => {
         const index = this.tableIndex;
         this.$emit(
           "row-update",
           Object.assign({}, this.tableForm),
           index,
-          this.hide
+          this.closeDialog
         );
       })
     },
@@ -502,7 +506,6 @@ export default {
     hide (cancel) {
       const callack = () => {
         if (cancel !== false) {
-          this.boxVisible = false;
           this.$nextTick(() => {
             this.$refs["tableForm"].resetForm();
             this.$emit("input", this.tableForm);

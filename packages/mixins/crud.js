@@ -12,7 +12,6 @@ import crudTime from "../crud/src/crud-time";
 import crudInputNumber from '../crud/src/crud-input-number';
 import crudUeditor from '../crud/src/crud-ueditor';
 import crudSwitch from '../crud/src/crud-switch';
-import { Alert } from "../../node_modules/element-ui";
 export default function() {
     return {
         props: {
@@ -36,19 +35,19 @@ export default function() {
         },
         watch: {
             tableForm: {
-                handler(n, o) {
+                handler(n) {
                     this.$emit('input', n);
                 },
                 deep: true
             },
             value: {
-                handler(n, o) {
+                handler() {
                     this.formVal();
                 },
                 deep: true
             },
             option: {
-                handler(n, o) {
+                handler() {
                     this.init();
                 },
                 deep: true
@@ -98,7 +97,7 @@ export default function() {
                 return !validatenull(val) ? val : dafult;
             },
             GetDicByType(href) {
-                return new Promise((resolve, reject) => {
+                return new Promise((resolve) => {
                     this.$http.get(href).then(function(res) {
                         //降级处理
                         const list = res.data;
@@ -113,7 +112,7 @@ export default function() {
                 })
             },
             GetDic() {
-                return new Promise((resolve, reject) => {
+                return new Promise((resolve) => {
                     let result = [],
                         dicData = {},
                         locaDic = this.option.dicData || [],
@@ -123,19 +122,19 @@ export default function() {
                         return;
                     }
                     list.forEach(ele => {
-                        result.push(new Promise((resolve, reject) => {
+                        result.push(new Promise((resolve) => {
                             if (validatenull(this.option.dicUrl)) {
                                 resolve(locaDic[ele]);
                             } else {
-                                this.GetDicByType(`${this.option.dicUrl.replace('{{key}}',ele.dicData)}`).then(function(res) {
+                                this.GetDicByType(`${this.option.dicUrl.replace('{{key}}',ele)}`).then(function(res) {
                                     resolve(res);
                                 })
                             }
                         }))
                     })
                     cascaderList.forEach(ele => {
-                        result.push(new Promise((resolve, reject) => {
-                            this.GetDicByType(`${ele.dicUrl.replace('{{key}}',ele.dicData)}`).then(function(res) {
+                        result.push(new Promise((resolve) => {
+                            this.GetDicByType(`${ele.dicUrl.replace('{{key}}',ele)}`).then(function(res) {
                                 list.push(ele.dicData);
                                 resolve(res);
                             })
@@ -160,4 +159,4 @@ export default function() {
             },
         }
     };
-};
+}

@@ -9,6 +9,10 @@ export default function() {
                 type: String,
                 default: ''
             },
+            tip: {
+                type: String,
+                default: ''
+            },
             disabled: {
                 type: Boolean,
                 default: false
@@ -57,7 +61,7 @@ export default function() {
             };
         },
         watch: {
-            value: function(n, o) {
+            value: function() {
                 this.text = this.value;
             }
         },
