@@ -1,21 +1,34 @@
 <template>
   <div class="menu-wrapper">
     <template v-for="(item,index) in menu">
-      <el-menu-item v-if="item.children.length===0 " :index="filterPath(item.href,index)" @click="open(item)" :key="item.label">
+      <el-menu-item v-if="validatenull(item.children)"
+                    :index="filterPath(item.href,index)"
+                    @click="open(item)"
+                    :key="item.label">
         <i :class="item.icon"></i>
         <span slot="title">{{item.label}}</span>
       </el-menu-item>
-      <el-submenu v-else :index="filterPath(item.name,index)" :key="item.name">
+      <el-submenu v-else
+                  :index="filterPath(item.label,index)"
+                  :key="item.label">
         <template slot="title">
           <i :class="item.icon"></i>
-          <span slot="title" :class="{'el-menu--display':isCollapse}">{{item.label}}</span>
+          <span slot="title"
+                :class="{'el-menu--display':isCollapse}">{{item.label}}</span>
         </template>
         <template v-for="(child,cindex) in item.children">
-          <el-menu-item :class="{'siderbar-active':nowTagValue==child.href}" :index="filterPath(child.href,cindex)" @click="open(child)" v-if="child.children.length==0" :key="cindex">
+          <el-menu-item :class="{'siderbar-active':nowTagValue==child.href}"
+                        :index="filterPath(child.href,cindex)"
+                        @click="open(child)"
+                        v-if="validatenull(child.children)"
+                        :key="child.label">
             <i :class="child.icon"></i>
             <span slot="title">{{child.label}}</span>
           </el-menu-item>
-          <sidebar-item v-else :menu="[child]" :key="cindex" :isCollapse="isCollapse"></sidebar-item>
+          <sidebar-item v-else
+                        :menu="[child]"
+                        :key="cindex"
+                        :isCollapse="isCollapse"></sidebar-item>
         </template>
       </el-submenu>
     </template>
@@ -23,9 +36,10 @@
 </template>
 <script>
 import { resolveUrlPath, setUrlPath } from '@/util/util'
+import { validatenull } from '@/util/validate';
 export default {
   name: 'SidebarItem',
-  data() {
+  data () {
     return {}
   },
   props: {
@@ -36,18 +50,21 @@ export default {
       type: Boolean
     }
   },
-  created() {},
-  mounted() {},
+  created () { },
+  mounted () { },
   computed: {
-    nowTagValue: function() {
+    nowTagValue: function () {
       return setUrlPath(this.$route)
     }
   },
   methods: {
-    filterPath(path, index) {
+    validatenull (val) {
+      return validatenull(val);
+    },
+    filterPath (path, index) {
       return path == null ? index + '' : path
     },
-    open(item) {
+    open (item) {
       this.$router.push({
         path: resolveUrlPath(item.href, item.label),
         query: item.query
