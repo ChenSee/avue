@@ -47,6 +47,13 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 - [4.Avue修仙系列之avue-crud后台接口字典的使用方法](https://pan.baidu.com/s/1TKZSu4K6mac4wio8qDdFJQ)
 - 未完待续
 
+#### avue综合实际实例
+- [crud综合例子](http://sandbox.runjs.cn/show/xjjyj1cj)
+- [crud流程例子](https://sandbox.runjs.cn/show/hnhjz9wn)
+- [crud多级联动例子](https://sandbox.runjs.cn/show/vigm1mvl)
+- [crud动态切换](https://sandbox.runjs.cn/show/e5kht8ed)
+- 未完待续
+
 #### avue相关地址
 欢迎加入QQ交流群，互相学习   
 前端avue交流群：606410437  
@@ -102,12 +109,6 @@ Vue.use(Element);
 Vue.use(Avue,axios)
 
 ```
-
-#### avue综合实际实例
-- [crud综合例子](http://sandbox.runjs.cn/show/xjjyj1cj)
-- [crud流程例子](https://sandbox.runjs.cn/show/hnhjz9wn)
-- [crud多级联动例子](https://sandbox.runjs.cn/show/vigm1mvl)
-- 未完待续
 
 #### 功能结构
 ```
