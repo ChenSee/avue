@@ -18,7 +18,7 @@ export default [{
         name: '个人信息',
         // meta: { tag: false },配置后不会添加到tag里
         component: () =>
-            import ('@/views/info/index'),
+            import ('@/views/info/index')
     }]
 }, {
     path: '/dev',
@@ -28,7 +28,7 @@ export default [{
         path: 'index',
         name: '环境变量',
         component: () =>
-            import ('@/views/dev/index'),
+            import ('@/views/dev/index')
     }]
 }, {
     path: '/guide',
@@ -38,7 +38,7 @@ export default [{
         path: 'index',
         name: '引导页',
         component: () =>
-            import ('@/views/guide/index'),
+            import ('@/views/guide/index')
     }]
 }, {
     path: '/store',
