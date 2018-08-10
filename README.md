@@ -69,6 +69,9 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 #### 技术文档
 - [avue技术文档](https://www.kancloud.cn/smallwei/avue/)
 
+#### 在线例子
+- [avue在线例子](http://122.4.247.156:7000)
+
 #### 源码地址
 - [码云地址:https://gitee.com/smallweigit/avue](https://gitee.com/smallweigit/avue)
 - [github地址：https://github.com/nmxiaowei/avue](https://github.com/nmxiaowei/avue)
