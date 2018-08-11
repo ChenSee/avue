@@ -15,10 +15,12 @@
       <el-main class="avue-main">
         <!-- 主体视图层 -->
         <transition name="fade-transverse">
-          <keep-alive>
-            <router-view class="avue-view"
-                         v-if="$route.meta.keepAlive" />
+
+          <router-view class="avue-view"
+                       v-if="$route.meta.keepAlive" />
           </keep-alive>
+        </transition>
+        <transition name="fade-transverse">
           <router-view class="avue-view"
                        v-if="!$route.meta.keepAlive" />
         </transition>
