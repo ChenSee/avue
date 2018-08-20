@@ -72,6 +72,9 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 #### 在线例子
 - [avue在线例子](http://122.4.247.156:7000)
 
+#### json管理平台
+- [avue组件json管理平台](http://122.4.247.156:5555)
+
 #### 源码地址
 - [码云地址:https://gitee.com/smallweigit/avue](https://gitee.com/smallweigit/avue)
 - [github地址：https://github.com/nmxiaowei/avue](https://github.com/nmxiaowei/avue)
@@ -89,9 +92,9 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 
 #### CDN
 ```
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@smallwei/avue@1.0.4/lib/theme-chalk/index.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@smallwei/avue@1.0.15/lib/theme-chalk/index.css" />
 
-<script src="https://cdn.jsdelivr.net/npm/@smallwei/avue@1.0.4/lib/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@smallwei/avue@1.0.15/lib/index.min.js"></script>
 
 #### npm
 npm i @smallwei/avue --save
