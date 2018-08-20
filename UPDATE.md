@@ -1,3 +1,12 @@
+#### 1.5.5
+
+ **crud**
+ - 修复：字典初始化时的重复请求，[IM5C5]](https://gitee.com/smallweigit/avue/issues/IM5C5)
+
+ **其他**
+ - 修复:tag关闭全部的第一个不可关闭问题[IM0NP](https://gitee.com/smallweigit/avue/issues/IM0NP)
+ - 修复:<keep-alive>内的<transition>标签导致缓存失败 [ILXD1](https://gitee.com/smallweigit/avue/issues/ILXD1)
+
 #### 1.5.3
 
  **crud and form**

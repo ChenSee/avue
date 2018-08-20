@@ -7,6 +7,7 @@ const tagObj = {
     num: '',
     close: true,
 }
+
 function setFistTag(list) {
     if (list.length == 1) {
         list[0].close = false;
@@ -60,6 +61,7 @@ const navs = {
             state.tag = tagObj;
             state.tagList = [];
             state.tagList.push(state.tagWel);
+            state.tagList[0].close = false;
             removeStore({ name: 'tag' });
             removeStore({ name: 'tagList' });
         },
