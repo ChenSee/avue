@@ -92,9 +92,9 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 
 #### CDN
 ```
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@smallwei/avue@1.0.15/lib/theme-chalk/index.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@smallwei/avue/lib/theme-chalk/index.css" />
 
-<script src="https://cdn.jsdelivr.net/npm/@smallwei/avue@1.0.15/lib/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@smallwei/avue/lib/index.js"></script>
 
 #### npm
 npm i @smallwei/avue --save
