@@ -144,13 +144,13 @@ const first = [{
     children: [{
         id: 14,
         label: "错误日志",
-        href: '/errlog/index',
+        href: '/logs/error',
         icon: 'icon-rizhi',
         children: []
     }, {
         id: 15,
         label: "错误页面",
-        href: '/errlog/page',
+        href: '/logs/page',
         icon: 'icon-cuowutishitubiao',
         children: []
     }]

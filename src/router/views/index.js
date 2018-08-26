@@ -150,19 +150,19 @@ export default [{
             import ('@/views/iconfont/index')
     }]
 }, {
-    path: '/errlog',
+    path: '/logs',
     component: Layout,
-    redirect: '/errlog/index',
+    redirect: '/logs/error',
     children: [{
-        path: 'index',
+        path: 'error',
         name: '错误日志',
         component: () =>
-            import ('@/page/errlog/index')
+            import ('@/page/logs/error')
     }, {
         path: 'page',
         name: '错误页面',
         component: () =>
-            import ('@/page/errlog/errorPage')
+            import ('@/page/logs/page')
     }]
 }, {
     path: '/advanced-router',
