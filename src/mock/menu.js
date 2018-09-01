@@ -23,6 +23,12 @@ const first = [{
     icon: 'icon-shujuzhanshi2',
     children: [],
 }, {
+    id: 14,
+    label: "自定义组件",
+    href: '/forms/transfer',
+    icon: 'icon-biaodan',
+    children: [],
+}, {
     id: 2,
     label: "第三方网站",
     href: '',

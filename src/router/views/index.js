@@ -128,6 +128,11 @@ export default [{
         name: '表单CRUD',
         component: () =>
             import ('@/views/forms/index')
+    }, {
+        path: 'transfer',
+        name: '表单自定义',
+        component: () =>
+            import ('@/views/forms/transfer')
     }]
 }, {
     path: '/select',

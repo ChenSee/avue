@@ -47,6 +47,20 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 - [4.Avue修仙系列之avue-crud后台接口字典的使用方法](https://pan.baidu.com/s/1TKZSu4K6mac4wio8qDdFJQ)
 - 未完待续
 
+#### avue自定义第三方插件
+
+avue自定义第三方插件例子-穿梭框  
+
+git:[https://gitee.com/smallweigit/avue-plugin-transfer](https://gitee.com/smallweigit/avue-plugin-transfer)  
+
+npm:[https://www.npmjs.com/package/avue-plugin-transfer](https://www.npmjs.com/package/avue-plugin-transfer)  
+
+使用方式：  
+* npm install avue-plugin-transfer --save
+* main.js导入import 'avue-plugin-transfer/packages'
+* 列的属性配置"component": "AvueTransfer" 你插件的全局名字即可
+
+
 #### avue综合实际实例
 - [crud综合例子](http://sandbox.runjs.cn/show/xjjyj1cj)
 - [crud流程例子](https://sandbox.runjs.cn/show/hnhjz9wn)
@@ -72,9 +86,6 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 #### 在线例子
 - [avue在线例子](http://122.4.247.156:7000)
 
-#### json管理平台
-- [avue组件json管理平台](http://122.4.247.156:5555)
-
 #### 源码地址
 - [码云地址:https://gitee.com/smallweigit/avue](https://gitee.com/smallweigit/avue)
 - [github地址：https://github.com/nmxiaowei/avue](https://github.com/nmxiaowei/avue)
@@ -93,7 +104,6 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 #### CDN
 ```
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@smallwei/avue/lib/theme-chalk/index.css" />
-
 <script src="https://cdn.jsdelivr.net/npm/@smallwei/avue/lib/index.js"></script>
 
 #### npm
@@ -147,37 +157,13 @@ Vue.use(Avue,axios)
 - 更多功能开在开发
 ```
 
-### 页面展示 （点击可大图预览）
-<table border="0">
-    <tr>
-        <td align="center">炫彩主题<img width="500" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-color.png"/></td>
-        <td align="center">主题色<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-theme.png"/></td>
-    </tr>
-    <tr>
-        <td align="center">数据持久化<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-store.png"/></td>
-        <td align="center">环境变量<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-dev.png"/></td>
-    </tr>
-    <tr>
-        <td align="center">表格树<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-table-tree.png"/></td>
-        <td align="center">登录<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-login.png"/></td>
-    </tr>
-    <tr>
-        <td align="center">权限测试<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-roles-test.png"/></td>
-        <td align="center">数据展示<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-datashow.png"/></td>
-    </tr>
-    <tr>
-        <td align="center">错误页面<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-errpage.png"/></td>
-        <td align="center">错误日志<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-errlog.png"/></td>
-    </tr>
-     <tr>
-        <td align="center">CRUD<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-crud.png"/></td>
-        <td align="center">FORM<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-form.png"/></td>
-    </tr>
-    <tr>
-        <td align="center">阿里巴巴图标库(在线调用)<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-ali.png"/></td>
-        <td align="center">主页<img width="500"  src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-index.png"/></td>
-    </tr>
-</table>
+### 部分页面展示 （其他页面效果图在publich/cdn/imgages目录）
+
+#### 登录页面
+<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-login.png"/>
+
+#### 炫彩主题
+<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-color.png"/>
 
 
 #### 开发
@@ -201,7 +187,7 @@ npm run serve
 ```bash
 1.npm install -g @vue/cli 全局安装vue脚手架最新版  
 2.vue --version 查看版本是否为3.x版本  
-3.vue-ui 运行管理工具，导入avue-cli项目  
+3.vue ui 运行管理工具，导入avue-cli项目  
 
 ```
 
