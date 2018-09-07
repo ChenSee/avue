@@ -23,9 +23,9 @@ avue2.x重磅来袭！与1.0.x版本截然不同！！
 5.不需要写大量html和css，只需要一个json即可完成你的页面  
 6.解放手写大量重复crud和form表单功能，只要维护一个json就好  
 7.让你轻松完成工作，有更多的时间去泡妹子  
-  
-演示地址:[http://122.4.247.156:8000/#/login](http://122.4.247.156:8000/#/login)  
-重点在form表单和crud表格
+8.重点在form表单和crud表格  
+avue-cli 2.x演示地址  
+[演示地址](https://cli2.avue.top)  
 
 适合人群:  
 1.常年撸后端，对前端页面有恐惧心里  
@@ -76,15 +76,14 @@ npm:[https://www.npmjs.com/package/avue-plugin-transfer](https://www.npmjs.com/p
 刚入门的前端小师妹博客:[https://my.oschina.net/u/3883702/](https://my.oschina.net/u/3883702/)   
 最近很多人反应不太会用crud快速开发组件，因此免费推出crud系列的讲解课程，详情请加QQ群
 
-#### avue-cli 1.x演示地址
-- [演示地址1:http://avue.2bugs.cn](http://avue.2bugs.cn)
-- [演示地址2:http://122.4.247.156:7777](http://122.4.247.156:7777)
+#### cli 1.x演示地址
+- [演示地址](https://cli1.avue.top)
 
 #### 技术文档
 - [avue技术文档](https://www.kancloud.cn/smallwei/avue/)
 
-#### 在线例子
-- [avue在线例子](http://122.4.247.156:7000)
+#### 官方网站
+- [avue官方网站](https://avue.top)
 
 #### 源码地址
 - [码云地址:https://gitee.com/smallweigit/avue](https://gitee.com/smallweigit/avue)
