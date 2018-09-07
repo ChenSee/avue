@@ -7,7 +7,7 @@ export default [{
         path: 'index',
         name: '首页',
         component: () =>
-            import ('@/page/wel'),
+            import ( /* webpackChunkName: "views" */ '@/page/wel'),
     }]
 }, {
     path: '/info',
@@ -18,7 +18,7 @@ export default [{
         name: '个人信息',
         // meta: { tag: false },配置后不会添加到tag里
         component: () =>
-            import ('@/views/info/index')
+            import ( /* webpackChunkName: "views" */ '@/views/info/index')
     }]
 }, {
     path: '/dev',
@@ -28,7 +28,7 @@ export default [{
         path: 'index',
         name: '环境变量',
         component: () =>
-            import ('@/views/dev/index')
+            import ( /* webpackChunkName: "utils" */ '@/views/dev/index')
     }]
 }, {
     path: '/guide',
@@ -38,7 +38,7 @@ export default [{
         path: 'index',
         name: '引导页',
         component: () =>
-            import ('@/views/guide/index')
+            import ( /* webpackChunkName: "utils" */ '@/views/guide/index')
     }]
 }, {
     path: '/store',
@@ -48,7 +48,7 @@ export default [{
         path: 'index',
         name: '数据持久化',
         component: () =>
-            import ('@/views/store/index')
+            import ( /* webpackChunkName: "utils" */ '@/views/store/index')
     }]
 }, {
     path: '/clipboard',
@@ -58,7 +58,7 @@ export default [{
         path: 'index',
         name: '剪切板',
         component: () =>
-            import ('@/views/clipboard/index')
+            import ( /* webpackChunkName: "utils" */ '@/views/clipboard/index')
     }]
 }, {
     path: '/role',
@@ -68,7 +68,7 @@ export default [{
         path: 'index',
         name: '权限测试页',
         component: () =>
-            import ('@/views/role')
+            import ( /* webpackChunkName: "views" */ '@/views/role')
     }]
 }, {
     path: '/gray',
@@ -78,7 +78,7 @@ export default [{
         path: 'index',
         name: '灰度模式',
         component: () =>
-            import ('@/views/gray/index')
+            import ( /* webpackChunkName: "utils" */ '@/views/gray/index')
     }]
 }, {
     path: '/table',
@@ -88,25 +88,25 @@ export default [{
             path: 'index',
             name: '表格CRUD',
             component: () =>
-                import ('@/views/table/index')
+                import ( /* webpackChunkName: "table" */ '@/views/table/index')
         },
         {
             path: 'generator',
             name: '表格生成器',
             component: () =>
-                import ('@/views/table/generator')
+                import ( /* webpackChunkName: "table" */ '@/views/table/generator')
         },
         {
             path: 'tree',
             name: '普通的tree表格',
             component: () =>
-                import ('@/views/table/table-tree/index')
+                import ( /* webpackChunkName: "table" */ '@/views/table/table-tree/index')
         },
         {
             path: 'alltree',
             name: '自定义tree表格',
             component: () =>
-                import ('@/views/table/table-tree/all')
+                import ( /* webpackChunkName: "table" */ '@/views/table/table-tree/all')
         }
     ]
 }, {
@@ -117,7 +117,7 @@ export default [{
         path: 'index',
         name: '数据展示',
         component: () =>
-            import ('@/views/exhibition/index')
+            import ( /* webpackChunkName: "views" */ '@/views/exhibition/index')
     }]
 }, {
     path: '/forms',
@@ -127,12 +127,12 @@ export default [{
         path: 'index',
         name: '表单CRUD',
         component: () =>
-            import ('@/views/forms/index')
+            import ( /* webpackChunkName: "forms" */ '@/views/forms/index')
     }, {
         path: 'transfer',
         name: '表单自定义',
         component: () =>
-            import ('@/views/forms/transfer')
+            import ( /* webpackChunkName: "forms" */ '@/views/forms/transfer')
     }]
 }, {
     path: '/select',
@@ -142,7 +142,7 @@ export default [{
         path: 'index',
         name: '多级select联动',
         component: () =>
-            import ('@/views/select/index')
+            import ( /* webpackChunkName: "views" */ '@/views/select/index')
     }]
 }, {
     path: '/iconfont',
@@ -152,7 +152,7 @@ export default [{
         path: 'index',
         name: '阿里图标',
         component: () =>
-            import ('@/views/iconfont/index')
+            import ( /* webpackChunkName: "views" */ '@/views/iconfont/index')
     }]
 }, {
     path: '/logs',
@@ -162,12 +162,12 @@ export default [{
         path: 'error',
         name: '错误日志',
         component: () =>
-            import ('@/page/logs/error')
+            import ( /* webpackChunkName: "utils" */ '@/page/logs/error')
     }, {
         path: 'page',
         name: '错误页面',
         component: () =>
-            import ('@/page/logs/page')
+            import ( /* webpackChunkName: "utils" */ '@/page/logs/page')
     }]
 }, {
     path: '/advanced-router',
@@ -176,22 +176,22 @@ export default [{
         path: 'mutative-router',
         name: '动态路由',
         component: () =>
-            import ('@/views/advanced-router/mutative-router')
+            import ( /* webpackChunkName: "views" */ '@/views/advanced-router/mutative-router')
     }, {
         path: 'argument-page',
         name: '参数路由',
         component: () =>
-            import ('@/views/advanced-router/argument-page')
+            import ( /* webpackChunkName: "views" */ '@/views/advanced-router/argument-page')
     }, {
         path: 'mutative-detail/:id',
         name: '动态路由详情页',
         component: () =>
-            import ('@/views/advanced-router/mutative-detail')
+            import ( /* webpackChunkName: "views" */ '@/views/advanced-router/mutative-detail')
     }, {
         path: 'argument-detail',
         name: '参数路由详情页',
         component: () =>
-            import ('@/views/advanced-router/argument-detail')
+            import ( /* webpackChunkName: "views" */ '@/views/advanced-router/argument-detail')
     }]
 }, {
     path: '/admin',
@@ -200,16 +200,16 @@ export default [{
         path: 'user',
         name: '用户管理',
         component: () =>
-            import ('@/views/admin/user/index')
+            import ( /* webpackChunkName: "views" */ '@/views/admin/user/index')
     }, {
         path: 'role',
         name: '角色管理',
         component: () =>
-            import ('@/views/admin/role/index')
+            import ( /* webpackChunkName: "views" */ '@/views/admin/role/index')
     }, {
         path: 'menu',
         name: '菜单管理',
         component: () =>
-            import ('@/views/admin/menu/index')
+            import ( /* webpackChunkName: "views" */ '@/views/admin/menu/index')
     }]
 }]
