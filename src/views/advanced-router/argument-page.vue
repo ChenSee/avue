@@ -1,6 +1,7 @@
 <template>
   <div>
     <basic-container>
+      <p>参数路由</p>
       <avue-crud :option="tableOption"
                  :data="tableData">
         <template slot-scope="scope"
@@ -23,7 +24,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import tableOption from "@/const/router/routerOption";
 import tableData from "@/const/router/routerData";
 export default {

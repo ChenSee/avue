@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { resolveUrlPath } from "@/util/util";
 import { mapState, mapGetters } from "vuex";
 export default {
   name: "top-menu",
@@ -53,7 +52,7 @@ export default {
   },
   methods: {
     openMenu (item) {
-      this.$store.dispatch("GetMenu", item.parentId).then(data => {
+      this.$store.dispatch("GetMenu", item.parentId).then(() => {
         let itemActive,
           childItemActive = 0;
         if (item.href) {
@@ -66,7 +65,10 @@ export default {
           }
         }
         this.$router.push({
-          path: resolveUrlPath(itemActive.href, itemActive.label)
+          path: this.$router.$avueRouter.getPath({
+            name: itemActive.label,
+            src: itemActive.href
+          })
         });
       });
     }

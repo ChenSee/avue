@@ -3,6 +3,7 @@ export default {
     logo: "A",
     author: "BY smallwei",
     whiteList: ["/login", "/404", "/401", "/lock"],
+    whiteTagList: ["/login", "/404", "/401", "/lock"],
     lockPage: '/lock',
     tokenTime: 6000,
     info: {

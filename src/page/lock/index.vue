@@ -23,7 +23,6 @@
 </template>
 <script>
 import { mapGetters, mapState } from "vuex";
-import { resolveUrlPath } from "@/util/util";
 export default {
   name: "lock",
   data () {
@@ -70,7 +69,7 @@ export default {
       this.pass = true;
       setTimeout(() => {
         this.$store.commit("CLEAR_LOCK");
-        this.$router.push({ path: resolveUrlPath(this.tag.value || "/") });
+        this.$router.push({ path: this.$router.$avueRouter.getPath({ src: this.tag.value }) });
       }, 1000);
     }
   },
