@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+import 'classlist-polyfill';
 import Vue from 'vue';
 import axios from './router/axios';
 import VueAxios from 'vue-axios';
