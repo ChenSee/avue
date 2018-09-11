@@ -49,16 +49,13 @@ avue-cli 2.x演示地址
 
 #### avue自定义第三方插件
 
-avue自定义第三方插件例子-穿梭框  
+[穿梭框](https://gitee.com/smallweigit/avue-plugin-transfer)  
+[富文本编辑器](https://gitee.com/smallweigit/avue-plugin-ueditor)  
 
-git:[https://gitee.com/smallweigit/avue-plugin-transfer](https://gitee.com/smallweigit/avue-plugin-transfer)  
-
-npm:[https://www.npmjs.com/package/avue-plugin-transfer](https://www.npmjs.com/package/avue-plugin-transfer)  
-
-使用方式：  
-* npm install avue-plugin-transfer --save
-* main.js导入import 'avue-plugin-transfer/packages'
-* 列的属性配置"component": "AvueTransfer" 你插件的全局名字即可
+使用方式(以富文本编辑器为例)：  
+* npm install avue-plugin-ueditor --save
+* main.js导入import 'avue-plugin-ueditor/packages'
+* 列的属性配置"component": "AvueUeditor" 你插件的全局名字即可
 
 
 #### avue综合实际实例

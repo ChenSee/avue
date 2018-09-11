@@ -56,9 +56,9 @@ export default {
         {
             label: "地址",
             span: 24,
-            formHeight: 180,
-            type: "ueditor",
+            minRows: 5,
             prop: "address",
+            component: 'AvueUeditor'
         }
     ]
 };
