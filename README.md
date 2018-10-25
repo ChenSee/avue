@@ -145,14 +145,14 @@ Vue.use(Avue,axios)
 ### 部分页面展示
 
 #### 登录页面
-<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/img/page/avue-login.png"/>
+<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/img/page/avue-login.png"/>
 
 
 #### 首页页面
-<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/img/page/avue-index.png"/>
+<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/img/page/avue-index.png"/>
 
 #### 炫彩主题
-<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/img/page/avue-color.png"/>
+<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/img/page/avue-color.png"/>
 
 
 #### 开发
