@@ -115,21 +115,23 @@ Vue.use(Avue,axios)
 - vuex持久化存储
 - 主题色切换
 - 锁屏
-- SSR渲染页面
 - 数据展示
 - 登录/注销
  - 用户名登录
  - 验证码登录
+ - 第三方登陆(QQ,微信)
 - 权限验证
 - 第三方网站嵌套
 - CRUD(增删改查)
 - FORM(动态生成)
 - 阿里巴巴图标库(在线调用)
+- tag标签操作
 - 环境变量
 - 表格树
 - 引导页
 - 数据持久化
 - 剪切板
+- 灰度化
 - 系统管理
  - 用户管理
  - 角色管理
@@ -140,13 +142,17 @@ Vue.use(Avue,axios)
 - 更多功能开在开发
 ```
 
-### 部分页面展示 （其他页面效果图在publich/cdn/imgages目录）
+### 部分页面展示
 
 #### 登录页面
-<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-login.png"/>
+<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/img/page/avue-login.png"/>
+
+
+#### 首页页面
+<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/img/page/avue-index.png"/>
 
 #### 炫彩主题
-<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/images/avue-color.png"/>
+<img width="900" src="https://gitee.com/smallweigit/avue/raw/master/public/cdn/img/page/avue-color.png"/>
 
 
 #### 开发
