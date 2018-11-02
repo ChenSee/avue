@@ -1,15 +1,15 @@
 <template>
   <div class="menu-wrapper">
     <template v-for="(item,index) in menu">
-      <el-menu-item v-if="validatenull(item.children)"
-                    :index="filterPath(item.href,index)"
+      <el-menu-item v-if="validatenull(item.children) && vaildRoles(item)"
+                    :index="item.href"
                     @click="open(item)"
                     :key="item.label">
         <i :class="item.icon"></i>
         <span slot="title">{{item.label}}</span>
       </el-menu-item>
-      <el-submenu v-else
-                  :index="filterPath(item.label,index)"
+      <el-submenu v-else-if="!validatenull(item.children)&&vaildRoles(item)"
+                  :index="item.label"
                   :key="item.label">
         <template slot="title">
           <i :class="item.icon"></i>
@@ -18,7 +18,7 @@
         </template>
         <template v-for="(child,cindex) in item.children">
           <el-menu-item :class="{'siderbar-active':nowTagValue==child.href}"
-                        :index="filterPath(child.href,cindex)"
+                        :index="child.href"
                         @click="open(child)"
                         v-if="validatenull(child.children)"
                         :key="child.label">
@@ -55,11 +55,12 @@ export default {
     nowTagValue: function () { return this.$router.$avueRouter.getValue(this.$route) }
   },
   methods: {
+    vaildRoles (item) {
+      item.meta = item.meta || {};
+      return item.meta.roles ? item.meta.roles.includes(this.roles) : true
+    },
     validatenull (val) {
       return validatenull(val);
-    },
-    filterPath (path, index) {
-      return path == null ? index + '' : path
     },
     open (item) {
       this.$router.push({

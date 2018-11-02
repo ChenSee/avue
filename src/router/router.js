@@ -1,3 +1,11 @@
+/**
+ * 全站路由配置
+ *
+ * meta参数说明
+ * keepAlive是否缓冲页面
+ * isTab是否加入到tag导航
+ * isAuth是否需要授权
+ */
 import VueRouter from 'vue-router';
 import PageRouter from './page/'
 import ViewsRouter from './views/'
@@ -19,5 +27,5 @@ let Router = new VueRouter({
     },
 });
 AvueRouter.install(Router, Store);
+Router.addRoutes([...PageRouter, ...ViewsRouter]);
 export default Router;
-export const asyncRouterMap = [].concat(PageRouter, ViewsRouter)
