@@ -26,7 +26,7 @@
             <span slot="title">{{child.label}}</span>
           </el-menu-item>
           <sidebar-item v-else
-                        :menu="[child]"
+                        :menu="child[childrenKey]"
                         :key="cindex"
                         :isCollapse="isCollapse"></sidebar-item>
         </template>
