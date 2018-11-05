@@ -95,13 +95,13 @@ export default {
 }
 .login-container::before {
   z-index: -999;
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/img/login.png');
+  background-image: url("/img/login.png");
   background-size: cover;
 }
 .login-info {
@@ -140,8 +140,9 @@ export default {
   letter-spacing: 3px;
 }
 .login-submit {
-  margin-top: 20px;
+  margin-top: 20px !important;
   width: 100%;
+  font-size: 14px !important;
   border-radius: 28px;
 }
 .login-form {
