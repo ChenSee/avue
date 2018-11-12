@@ -31,7 +31,7 @@ const first = [{
 }, {
     id: 2,
     label: "第三方网站",
-    href: '',
+    href: '/url',
     icon: 'icon-iframe',
     meta: {},
     children: [{
@@ -57,7 +57,7 @@ const first = [{
 }, {
     id: 6,
     label: "表格&表单",
-    href: '',
+    href: '/table',
     icon: 'icon-biaoge',
     meta: {},
     children: [{
@@ -125,7 +125,7 @@ const first = [{
 }, {
     id: 15,
     label: "高级路由",
-    href: '#',
+    href: '/router',
     icon: 'icon-iconset0265',
     meta: {},
     children: [{
@@ -144,7 +144,7 @@ const first = [{
 }, {
     id: 8,
     label: "综合错误",
-    href: '#',
+    href: '/error',
     icon: 'icon-cuowu',
     meta: {},
     children: [{
@@ -201,10 +201,8 @@ const second = [{
 }, {
     id: 9,
     label: "系统管理",
+    href: `/admin`,
     icon: 'icon-liuliangyunpingtaitubiao08',
-    meta: {
-
-    },
     children: [{
             id: 20,
             label: "用户管理",

@@ -1,18 +1,20 @@
 <template>
-  <div class="sidebar-container"
+  <div class="avue-sidebar"
        :class="{'is-active':isCollapse}">
     <logo :isCollapse="isCollapse"></logo>
-    <el-menu unique-opened
-             :default-active="nowTagValue"
-             mode="vertical"
-             :show-timeout="200"
-             background-color="#00142a"
-             text-color="hsla(0,0%,100%,.65)"
-             active-text-color="#409eff"
-             :collapse="isCollapse">
-      <sidebar-item :menu="menu"
-                    :isCollapse="isCollapse"></sidebar-item>
-    </el-menu>
+    <el-scrollbar style="height:100%">
+      <el-menu unique-opened
+               :default-active="nowTagValue"
+               mode="vertical"
+               :show-timeout="200"
+               background-color="rgb(0, 20, 42)"
+               text-color="rgba(255,255,255,0.7)"
+               :collapse="isCollapse">
+        <sidebar-item :menu="menu"
+                      :props="website.menu.props"
+                      :collapse="isCollapse"></sidebar-item>
+      </el-menu>
+    </el-scrollbar>
   </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
     this.$store.dispatch('GetMenu').then(data => { })
   },
   computed: {
-    ...mapGetters(['menu', 'tag', 'isCollapse']),
+    ...mapGetters(['menu', 'tag', 'isCollapse', 'website']),
     nowTagValue: function () { return this.$router.$avueRouter.getValue(this.$route) }
   },
   mounted () { },

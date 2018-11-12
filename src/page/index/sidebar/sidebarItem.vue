@@ -1,58 +1,80 @@
 <template>
   <div class="menu-wrapper">
-    <template v-for="(item,index) in menu">
-      <el-menu-item v-if="validatenull(item.children) && vaildRoles(item)"
-                    :index="item.href"
+    <template v-for="item in menu">
+      <el-menu-item v-if="validatenull(item[childrenKey]) && vaildRoles(item)"
+                    :index="item[pathKey]"
                     @click="open(item)"
-                    :key="item.label">
-        <i :class="item.icon"></i>
-        <span slot="title">{{item.label}}</span>
+                    :key="item[labelKey]"
+                    :class="{'is-active':nowTagValue===item[pathKey]}">
+        <i :class="item[iconKey]"></i>
+        <span slot="title">{{item[labelKey]}}</span>
       </el-menu-item>
-      <el-submenu v-else-if="!validatenull(item.children)&&vaildRoles(item)"
-                  :index="item.label"
-                  :key="item.label">
+      <el-submenu v-else-if="!validatenull(item[childrenKey])&&vaildRoles(item)"
+                  :index="item[pathKey]"
+                  :key="item[labelKey]">
         <template slot="title">
-          <i :class="item.icon"></i>
+          <i :class="item[iconKey]"></i>
           <span slot="title"
-                :class="{'el-menu--display':isCollapse}">{{item.label}}</span>
+                :class="{'el-menu--display':collapse}">{{item[labelKey]}}</span>
         </template>
-        <template v-for="(child,cindex) in item.children">
-          <el-menu-item :class="{'siderbar-active':nowTagValue==child.href}"
-                        :index="child.href"
+        <template v-for="(child,cindex) in item[childrenKey]">
+          <el-menu-item :index="child[pathKey],cindex"
                         @click="open(child)"
-                        v-if="validatenull(child.children)"
-                        :key="child.label">
-            <i :class="child.icon"></i>
-            <span slot="title">{{child.label}}</span>
+                        :class="{'is-active':nowTagValue===child[pathKey]}"
+                        v-if="validatenull(child[childrenKey])"
+                        :key="child[labelKey]">
+            <i :class="child[iconKey]"></i>
+            <span slot="title">{{child[labelKey]}}</span>
           </el-menu-item>
           <sidebar-item v-else
                         :menu="child[childrenKey]"
                         :key="cindex"
-                        :isCollapse="isCollapse"></sidebar-item>
+                        :props="props"
+                        :collapse="collapse"></sidebar-item>
         </template>
       </el-submenu>
     </template>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import { validatenull } from '@/util/validate';
 export default {
-  name: 'SidebarItem',
+  name: 'sidebarItem',
   data () {
-    return {}
+    return {
+      config: {
+        propsDefault: {
+          label: 'label',
+          path: 'path',
+          icon: 'icon',
+          children: 'children'
+        }
+      }
+    }
   },
   props: {
     menu: {
       type: Array
     },
-    isCollapse: {
+    props: {
+      type: Object,
+      default: () => { return {} }
+    },
+    collapse: {
       type: Boolean
     }
   },
-  created () { },
+  created () {
+  },
   mounted () { },
   computed: {
-    nowTagValue: function () { return this.$router.$avueRouter.getValue(this.$route) }
+    ...mapGetters(['roles']),
+    labelKey () { return this.props.label || this.config.propsDefault.label },
+    pathKey () { return this.props.path || this.config.propsDefault.path },
+    iconKey () { return this.props.icon || this.config.propsDefault.icon },
+    childrenKey () { return this.props.children || this.config.propsDefault.children },
+    nowTagValue () { return this.$router.$avueRouter.getValue(this.$route) }
   },
   methods: {
     vaildRoles (item) {
@@ -65,8 +87,8 @@ export default {
     open (item) {
       this.$router.push({
         path: this.$router.$avueRouter.getPath({
-          name: item.label,
-          src: item.href
+          name: item[this.labelKey],
+          src: item[this.pathKey]
         }),
         query: item.query
       })
@@ -74,13 +96,4 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-//刷新激活状态
-.siderbar-active {
-  i,
-  span {
-    color: #409eff;
-  }
-}
-</style>
 

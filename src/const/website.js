@@ -27,5 +27,14 @@ export default {
             '增加系统管理模板(用户管理,角色管理,菜单管理——基于本框架的crud组件自动生成)',
             '打包后docker一键部署脚本基于nginx镜像（具体的可以修改./src/docker/Dockerfile）'
         ]
+    },
+    //配置菜单的属性
+    menu: {
+        props: {
+            label: 'label',
+            path: 'href',
+            icon: 'icon',
+            children: 'children'
+        }
     }
 }

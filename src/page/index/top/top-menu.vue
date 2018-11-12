@@ -38,6 +38,12 @@ export default {
           parentId: 1
         },
         {
+          label: "官网",
+          icon: 'el-icon-document',
+          href: "https://avue.top",
+          parentId: 4
+        },
+        {
           label: "文档",
           icon: 'el-icon-document',
           href: "https://www.kancloud.cn/smallwei/avue/",

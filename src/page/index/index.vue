@@ -1,32 +1,38 @@
 <template>
-  <el-container class="avue-contail">
-    <el-aside :style="{width: isCollapse ? asideWidthCollapse : asideWidth}">
-      <!-- 左侧导航栏 -->
-      <sidebar class="avue-sidebar"></sidebar>
-    </el-aside>
-    <el-container>
-      <el-header height="auto"
-                 class="avue-tabs">
-        <!-- 顶部导航栏 -->
-        <top />
+  <div class="avue-contail"
+       :class="{'avue--collapse':isCollapse}">
+    <div class="avue-header">
+      <!-- 顶部导航栏 -->
+      <top />
+    </div>
+
+    <div class="avue-layout">
+      <div class="avue-left">
+        <!-- 左侧导航栏 -->
+        <sidebar />
+      </div>
+      <div class="avue-main">
         <!-- 顶部标签卡 -->
         <tags />
-      </el-header>
-      <el-main class="avue-main">
         <!-- 主体视图层 -->
-        <transition name="fade-transverse">
-
-          <router-view class="avue-view"
-                       v-if="$route.meta.keepAlive" />
+        <el-scrollbar style="height:100%">
+          <keep-alive>
+            <router-view class="avue-view"
+                         v-if="$route.meta.keepAlive" />
           </keep-alive>
-        </transition>
-        <transition name="fade-transverse">
           <router-view class="avue-view"
                        v-if="!$route.meta.keepAlive" />
-        </transition>
-      </el-main>
-    </el-container>
-  </el-container>
+        </el-scrollbar>
+
+      </div>
+    </div>
+    <!-- <el-footer class="avue-footer">
+      <img src="/svg/logo.svg"
+           alt=""
+           class="logo">
+      <p class="copyright">© 2018 Avue designed by smallwei</p>
+    </el-footer> -->
+  </div>
 </template>
 
 <script>
@@ -36,7 +42,7 @@ import top from './top/'
 import sidebar from './sidebar/'
 import { validatenull } from '@/util/validate';
 import { calcDate } from '@/util/date.js';
-import { setStore, getStore } from '@/util/store.js';
+import { getStore } from '@/util/store.js';
 export default {
   components: {
     top,
@@ -46,10 +52,6 @@ export default {
   name: 'index',
   data () {
     return {
-      // [侧边栏宽度] 正常状态
-      asideWidth: '230px',
-      // [侧边栏宽度] 折叠状态
-      asideWidthCollapse: '65px',
       //刷新token锁
       refreshLock: false,
       //刷新token的时间
@@ -58,12 +60,17 @@ export default {
   },
   created () {
     //实时检测刷新token
-    this.refreshToken();
+    // this.refreshToken();
   },
-  mounted () { },
+  mounted () {
+
+  },
   computed: mapGetters(['isLock', 'isCollapse', 'website']),
   props: [],
   methods: {
+    showCollapse () {
+      this.$store.commit("SET_COLLAPSE");
+    },
     // 实时检测刷新token
     refreshToken () {
       this.refreshTime = setInterval(() => {
@@ -77,10 +84,10 @@ export default {
           this.refreshLock = true;
           this.$store
             .dispatch('RefeshToken')
-            .then((res) => {
+            .then(() => {
               clearInterval(this.refreshTime);
             })
-            .catch((err) => {
+            .catch(() => {
               this.refreshLock = false;
             });
         }
@@ -89,25 +96,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.avue-contail {
-  height: 100%;
-}
-.avue-sidebar {
-  height: 100%;
-}
-.avue-tabs {
-  padding: 0;
-}
-.avue-main {
-  position: relative;
-  padding: 0;
-}
-.avue-view {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-</style>

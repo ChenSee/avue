@@ -3,10 +3,9 @@
     <div class="top-button is-left">
       <!-- breadcrumb按钮和面包屑 -->
       <div class="tags-breadcrumb">
-        <i class="icon-navicon tag-collapse"
-           :class="[{ 'tag-collapse_right': isCollapse }]"
+        <i class="icon-navicon avue-breadcrumb_collapse"
+           :class="[{ 'avue-breadcrumb_collapse--right': isCollapse }]"
            @click="showCollapse"></i>
-        <!-- <top-breadcrumb class="tags-breadcrumb-list"></top-breadcrumb> -->
       </div>
     </div>
     <h1 class="top-title">
