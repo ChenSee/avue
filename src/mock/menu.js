@@ -59,6 +59,9 @@ const first = [{
     label: "表格&表单",
     href: '/table',
     icon: 'icon-biaoge',
+    meta: {
+        keepAlive: true
+    },
     meta: {},
     children: [{
         id: 16,
@@ -92,20 +95,15 @@ const first = [{
         children: []
     }, {
         id: 9,
-        label: "生成器",
-        href: `/table/generator`,
-        icon: 'icon-huanyingye',
-        meta: {},
-        children: []
-    }, {
-        id: 9,
         label: "表单",
         href: '/forms/index',
         query: {
             a: 1
         },
         icon: 'icon-biaodan',
-        meta: {},
+        meta: {
+            keepAlive: true
+        },
         children: []
     }, {
         id: 10,
@@ -132,12 +130,14 @@ const first = [{
         id: 16,
         label: "动态路由",
         href: '/advanced-router/mutative-router',
+        group: ['/mutative-detail'],
         icon: 'icon-dongtai',
         children: []
     }, {
         id: 17,
         label: "参数路由",
         href: '/advanced-router/argument-page',
+        group: ['/argument-detail'],
         icon: 'icon-canshu',
         children: []
     }, ]

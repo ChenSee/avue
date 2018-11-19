@@ -1,6 +1,9 @@
 <template>
   <div>
     <basic-container>
+      <el-tag>本页面在meta里配置keepAlive缓冲，关闭本标签缓冲失效</el-tag>
+    </basic-container>
+    <basic-container>
       <avue-form :option="formOption"
                  v-model="formData"
                  @submit="handleSubmit">

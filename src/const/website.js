@@ -28,6 +28,18 @@ export default {
             '打包后docker一键部署脚本基于nginx镜像（具体的可以修改./src/docker/Dockerfile）'
         ]
     },
+    //http的status默认放行不才用统一处理的,
+    statusWhiteList: [400],
+    //配置首页不可关闭
+    isFirstPage: false,
+    fistPage: {
+        label: "首页",
+        value: "/wel/index",
+        params: {},
+        query: {},
+        group: [],
+        close: false
+    },
     //配置菜单的属性
     menu: {
         props: {

@@ -9,7 +9,6 @@ export const userOption = {
     selection: false,
     dicData: DIC,
     dic: ['GRADE', 'STATE'],
-    formWidth: '60%',
     column: [{
             label: "用户名",
             prop: "username",

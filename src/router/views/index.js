@@ -101,12 +101,6 @@ export default [{
                 import ( /* webpackChunkName: "table" */ '@/views/table/index')
         },
         {
-            path: 'generator',
-            name: '表格生成器',
-            component: () =>
-                import ( /* webpackChunkName: "table" */ '@/views/table/generator')
-        },
-        {
             path: 'tree',
             name: '普通的tree表格',
             component: () =>

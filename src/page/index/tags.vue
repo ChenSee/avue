@@ -32,7 +32,6 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 
-import { isObjectValueEqual } from '@/util/util';
 export default {
   name: 'tags',
   data () {
@@ -84,9 +83,6 @@ export default {
         }),
         query: tag.query
       })
-    },
-    isObjectValueEqual (a, b) {
-      return isObjectValueEqual(a, b)
     },
     closeOthersTags () {
       this.$store.commit('DEL_TAG_OTHER')
