@@ -2,6 +2,11 @@
     .avue-contail {
         background-color: #002253!important;
     }
+    .avue-header,
+    .tags-container,
+    .avue-logo {
+        background-color: transparent;
+    }
     .el-card {
         opacity: .9;
     }
@@ -21,15 +26,18 @@
     .avue-tabs {
         padding: 0 20px !important;
     }
-    .sidebar-container,
+    .avue-sidebar,
     .logo,
     .el-menu-item,
     .el-submenu__title,
     .el-menu {
         background-color: transparent !important
     }
+    .logo_subtitle {
+        color: #ccc !important;
+    }
     .logo_title,
-    .tags-breadcrumb,
+    .avue-breadcrumb,
     {
         color: #ff929a !important;
         i {
@@ -46,8 +54,9 @@
     .top {
         border-bottom: none;
     }
-    .tags-menu {
-        background: #002253 !important;
+    .avue-tags {
+        background-color: transparent;
+        border: none;
     }
     .tag-item {
         color: #ff929a !important;
@@ -64,31 +73,92 @@
             }
         }
     }
-    .nest-menu .el-submenu>.el-submenu__title:hover,
-    .el-submenu .el-menu-item:hover {
-        background: hsla(0, 0%, 100%, .05) !important;
-    }
-    .el-menu--vertical {
-        background-color: #002253!important;
-    }
     .el-menu-item {
-        &.is-active,
-        &.siderbar-active {
-            background: hsla(0, 0%, 100%, .05)!important;
+        i,
+        span {
+            color: #ff929a;
+        }
+        &:hover {
             span,
             i {
                 color: #ffb870 !important;
             }
         }
-        color: #ff929a !important;
-        i {
-            color: #ff929a !important;
+        &.is-active {
+            &::before {
+                background: #ffb870;
+            }
+            span,
+            i {
+                color: #ffb870 !important;
+            }
+            background: hsla(0, 0%, 100%, .05) !important;
+            &:hover {
+                color: #ffb870 !important;
+                background: hsla(0, 0%, 100%, .05) !important;
+            }
         }
     }
     .el-submenu__title {
-        color: #ff929a !important;
-        i {
+        i,
+        span {
             color: #ff929a !important;
+        }
+    }
+    .el-submenu .el-menu-item {
+        &:hover {
+            span,
+            i {
+                color: #ffb870 !important;
+            }
+        }
+        &.is-active {
+            background: hsla(0, 0%, 100%, .05) !important;
+            span,
+            i {
+                color: #ffb870 !important;
+            }
+            &:hover {
+                background: hsla(0, 0%, 100%, .05) !important;
+            }
+        }
+    }
+    .el-tabs--card>.el-tabs__header .el-tabs__item {
+        color: #ff929a;
+        border: 1px solid #ff929a;
+        &.is-active {
+            border: 1px solid #ffb870;
+            color: #ffb870;
+        }
+    }
+    .tags-container {
+        border-color: #ff929a;
+    }
+    .top-search {
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+            /* WebKit browsers */
+            color: #ff929a;
+        }
+        input:-moz-placeholder,
+        textarea:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #ff929a;
+        }
+        input::-moz-placeholder,
+        textarea::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #ff929a;
+        }
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            color: #ff929a;
+        }
+    }
+    .top-bar__item {
+        i {
+            color: #ff929a;
         }
     }
 }
