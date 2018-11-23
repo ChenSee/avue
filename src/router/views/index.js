@@ -16,9 +16,13 @@ export default [{
     children: [{
         path: 'index',
         name: '个人信息',
-        // meta: { tag: false },配置后不会添加到tag里
         component: () =>
             import ( /* webpackChunkName: "views" */ '@/views/info/index')
+    }, {
+        path: 'message',
+        name: '消息中心',
+        component: () =>
+            import ( /* webpackChunkName: "views" */ '@/views/info/message')
     }]
 }, {
     path: '/dev',

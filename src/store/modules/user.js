@@ -61,6 +61,8 @@ const user = {
                     commit('SET_ROLES', data.roles);
                     commit('SET_PERMISSION', data.permission)
                     resolve(data);
+                }).catch(err => {
+                    reject(err);
                 })
             })
         },

@@ -20,6 +20,9 @@
           <top-color></top-color>
         </span>
       </el-tooltip>
+      <div class="top-item">
+        <top-msg></top-msg>
+      </div>
       <el-tooltip class="item"
                   effect="dark"
                   :content="logsFlag?'没有错误日志':`${logsLen}条错误日志`"
@@ -96,8 +99,9 @@ import topBreadcrumb from "./top-breadcrumb";
 import topColor from "./top-color";
 import topTheme from "./top-theme";
 import topLogs from "./top-logs";
+import topMsg from "./top-msg";
 export default {
-  components: { topLock, topMenu, topBreadcrumb, topColor, topTheme, topLogs },
+  components: { topLock, topMenu, topBreadcrumb, topColor, topTheme, topLogs, topMsg },
   name: "top",
   data () {
     return {};
