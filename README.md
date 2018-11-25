@@ -27,7 +27,7 @@
 
 ## avue(企业版)
 - 在线演示 - [https://cli2.avue.top](https://cli2.avue.top)  
-- 获取授权 - [https://avue.top/#/pay](hhttps://avue.top/#/pay)  
+- 获取授权 - [https://avue.top/#/pay](https://avue.top/#/pay)  
 
 #### 适合人群:  
 * 1.常年撸后端，对前端页面有恐惧心里  
