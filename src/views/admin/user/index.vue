@@ -6,7 +6,6 @@
                  :table-loading="tableLoading"
                  :page="page"
                  ref="crud"
-                 width="290"
                  @row-save="handleSave"
                  @row-update="handleUpdate"
                  @row-del="handleDel">
@@ -21,13 +20,14 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { getUserData } from '@/api/admin'
 import { userOption } from "@/const/admin/adminTabelOption.js";
 export default {
   name: "user",
   components: {},
   data () {
     return {
-      tableOption: {}, //表格设置属性
+      tableOption: userOption, //表格设置属性
       tableData: [], //表格的数据
       tablePage: 1,
       tableLoading: false,
@@ -44,8 +44,6 @@ export default {
     };
   },
   created () {
-    //初始化数据格式
-    this.tableOption = userOption;
     this.handleList();
   },
   watch: {},
@@ -78,9 +76,9 @@ export default {
      **/
     handleList () {
       this.tableLoading = true;
-      this.$store
-        .dispatch("GetUserData", { page: `${this.tablePage}` })
-        .then(data => {
+      getUserData({ page: `${this.tablePage}` })
+        .then(res => {
+          const data = res.data.data;
           setTimeout(() => {
             this.tableData = data.tableData;
             this.page = {
@@ -126,7 +124,7 @@ export default {
             type: "success"
           });
         })
-        .catch(err => { });
+        .catch(() => { });
     },
     /**
      * @title 数据更新

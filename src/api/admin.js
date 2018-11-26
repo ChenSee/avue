@@ -1,20 +1,22 @@
-import { userTableData, roleTableData } from '@/mock/admin'
-import { baseUrl } from '@/config/env'
-import { DIC } from '@/const/dic'
-export const getUserData = (page) => {
-    return new Promise((resolve, reject) => {
-        resolve({ data: userTableData });
-    })
-}
+import request from '@/router/axios';
+export const getUserData = (page) => request({
+    url: '/admin/getUser',
+    method: 'get',
+    data: { page }
+})
 
-export const getRoleData = (page) => {
-    return new Promise((resolve, reject) => {
-        resolve({ data: roleTableData });
-    })
-}
+export const getRoleData = (page) => request({
+    url: '/admin/getRole',
+    method: 'get',
+    data: { page }
+})
 
-export const getDic = (type) => {
-    return new Promise((resolve, reject) => {
-        resolve({ data: DIC[type] });
-    })
-}
+
+
+export const getDic = (type) => request({
+    url: '/admin/getDic',
+    method: 'get',
+    data: {
+        type
+    }
+})

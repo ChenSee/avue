@@ -6,7 +6,6 @@
                  :table-loading="tableLoading"
                  :page="page"
                  ref="crud"
-                 width="290"
                  @row-save="handleSave"
                  @row-update="handleUpdate"
                  @row-del="handleDel">
@@ -39,6 +38,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { getRoleData } from '@/api/admin'
 import { roleOption } from "@/const/admin/adminTabelOption.js";
 export default {
   name: "role",
@@ -87,7 +87,7 @@ export default {
      * @title 权限选择
      *
      **/
-    handleGradeCheckChange (data, checked, indeterminate) {
+    handleGradeCheckChange (data, checked) {
       if (checked) {
         this.grade.check.push(data.id);
       } else {
@@ -97,8 +97,8 @@ export default {
     /**
      * @title 打开权限
      */
-    handleGrade (row, index) {
-      this.$store.dispatch("GetMenuAll").then(data => {
+    handleGrade (row) {
+      this.$store.dispatch("GetMenuAll").then(() => {
         this.grade.box = true;
         this.tabelObj = row;
         this.grade.check = this.tabelObj.check;
@@ -119,9 +119,9 @@ export default {
      **/
     handleList () {
       this.tableLoading = true;
-      this.$store
-        .dispatch("GetRoleData", { page: `${this.tablePage}` })
-        .then(data => {
+      getRoleData({ page: `${this.tablePage}` })
+        .then(res => {
+          const data = res.data.data;
           setTimeout(() => {
             this.tableData = data.tableData;
             this.page = {
@@ -167,7 +167,7 @@ export default {
             type: "success"
           });
         })
-        .catch(err => { });
+        .catch(() => { });
     },
     /**
      * @title 数据更新

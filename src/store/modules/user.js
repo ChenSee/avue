@@ -1,29 +1,30 @@
-import { getToken, setToken, removeToken } from '@/util/auth'
-import { setStore, getStore, removeStore } from '@/util/store'
-import { validatenull } from '@/util/validate'
-import { encryption } from '@/util/util'
-import { loginByUsername, getUserInfo, getTableData, getMenu, logout, getMenuAll, RefeshToken } from '@/api/user'
+import { setToken, removeToken } from '@/util/auth'
+import { setStore, getStore } from '@/util/store'
+import { isURL } from '@/util/validate'
+import { encryption, deepClone } from '@/util/util'
+import webiste from '@/const/website'
+import { loginByUsername, getUserInfo, getMenu, logout, getMenuAll, RefeshToken } from '@/api/user'
 const user = {
     state: {
         userInfo: {},
         permission: {},
         roles: [],
-        menu: [],
+        menu: getStore({ name: 'menu' }) || [],
         menuAll: [],
         token: getStore({ name: 'token' }) || '',
     },
     actions: {
         //根据用户名登录
-        LoginByUsername({ commit, state, dispatch }, userInfo) {
+        LoginByUsername({ commit }, userInfo) {
             const user = encryption({
                 data: userInfo,
                 type: 'Aes',
                 key: 'avue',
                 param: ['useranme', 'password']
             });
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 loginByUsername(user.username, user.password, userInfo.code, userInfo.redomStr).then(res => {
-                    const data = res.data;
+                    const data = res.data.data;
                     commit('SET_TOKEN', data);
                     commit('DEL_ALL_TAG');
                     commit('CLEAR_LOCK');
@@ -33,10 +34,10 @@ const user = {
             })
         },
         //根据手机号登录
-        LoginByPhone({ commit, state, dispatch }, userInfo) {
-            return new Promise((resolve, reject) => {
+        LoginByPhone({ commit }, userInfo) {
+            return new Promise((resolve) => {
                 loginByUsername(userInfo.phone, userInfo.code).then(res => {
-                    const data = res.data;
+                    const data = res.data.data;
                     commit('SET_TOKEN', data);
                     commit('DEL_ALL_TAG');
                     commit('CLEAR_LOCK');
@@ -45,18 +46,10 @@ const user = {
                 })
             })
         },
-        GetTableData({ commit, state, dispatch }, page) {
-            return new Promise((resolve, reject) => {
-                getTableData(page).then(res => {
-                    const data = res.data;
-                    resolve(data);
-                })
-            })
-        },
-        GetUserInfo({ commit, state, dispatch }) {
+        GetUserInfo({ commit }) {
             return new Promise((resolve, reject) => {
                 getUserInfo().then((res) => {
-                    const data = res.data;
+                    const data = res.data.data;
                     commit('SET_USERIFNO', data.userInfo);
                     commit('SET_ROLES', data.roles);
                     commit('SET_PERMISSION', data.permission)
@@ -67,22 +60,24 @@ const user = {
             })
         },
         //刷新token
-        RefeshToken({ commit, state }) {
+        RefeshToken({ commit }) {
             return new Promise((resolve, reject) => {
-                logout().then(() => {
+                RefeshToken().then(res => {
+                    const data = res.data.data;
                     commit('SET_TOKEN', data);
                     setToken(data);
-                    resolve();
+                    resolve(data);
                 }).catch(error => {
                     reject(error)
                 })
             })
         },
         // 登出
-        LogOut({ commit, state }) {
+        LogOut({ commit }) {
             return new Promise((resolve, reject) => {
                 logout().then(() => {
                     commit('SET_TOKEN', '')
+                    commit('SET_MENU', [])
                     commit('SET_ROLES', [])
                     commit('DEL_ALL_TAG');
                     commit('CLEAR_LOCK');
@@ -97,6 +92,7 @@ const user = {
         FedLogOut({ commit }) {
             return new Promise(resolve => {
                 commit('SET_TOKEN', '')
+                commit('SET_MENU', [])
                 commit('SET_ROLES', [])
                 commit('DEL_ALL_TAG');
                 commit('CLEAR_LOCK');
@@ -106,12 +102,12 @@ const user = {
         },
         //获取系统菜单
         GetMenu({ commit }, parentId) {
-            parentId
             return new Promise(resolve => {
                 getMenu(parentId).then((res) => {
-                    const data = res.data;
-                    commit('SET_MENU', data);
-                    resolve(data);
+                    const data = res.data.data
+                    let menu = deepClone(data);
+                    commit('SET_MENU', menu)
+                    resolve(menu)
                 })
             })
         },
@@ -119,7 +115,7 @@ const user = {
         GetMenuAll({ commit }) {
             return new Promise(resolve => {
                 getMenuAll().then((res) => {
-                    const data = res.data;
+                    const data = res.data.data;
                     commit('SET_MENU_ALL', data);
                     resolve(data);
                 })
@@ -136,16 +132,8 @@ const user = {
             state.userInfo = userInfo;
         },
         SET_MENU: (state, menu) => {
-            const list = menu.filter(ele => {
-                if (validatenull(ele.meta)) return true;
-                if (validatenull(ele.meta.roles)) return true;
-                if (ele.meta.roles.indexOf(state.roles[0]) != -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-            state.menu = list;
+            state.menu = menu
+            setStore({ name: 'menu', content: state.menu, type: 'session' })
         },
         SET_MENU_ALL: (state, menuAll) => {
             state.menuAll = menuAll;

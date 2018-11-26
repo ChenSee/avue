@@ -1,3 +1,4 @@
+import Mock from 'mockjs'
 import {
     baseUrl
 } from '@/config/env'
@@ -225,4 +226,13 @@ const second = [{
         }
     ]
 }]
-export const menu = [first, second];
+export default ({ mock }) => {
+    if (!mock) return;
+    let menu = [first, second];
+    Mock.mock('/user/getMenu', 'get', (res) => {
+        let body = JSON.parse(res.body);
+        return {
+            data: menu[body.type]
+        }
+    })
+}
