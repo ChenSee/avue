@@ -51,6 +51,7 @@
 
 
 #### 综合例子
+- [avue高德地图例子](https://sandbox.runjs.cn/show/kry1jsnz)
 - [crud综合例子](http://sandbox.runjs.cn/show/xjjyj1cj)
 - [crud流程例子](https://sandbox.runjs.cn/show/hnhjz9wn)
 - [crud多级联动例子](https://sandbox.runjs.cn/show/vigm1mvl)
