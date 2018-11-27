@@ -2,7 +2,6 @@ import 'babel-polyfill'
 import 'classlist-polyfill';
 import Vue from 'vue';
 import axios from './router/axios';
-import './mock/'; //模拟数据
 import VueAxios from 'vue-axios';
 import App from './App';
 import './permission'; // 权限
