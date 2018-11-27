@@ -11,6 +11,7 @@
                text-color="rgba(255,255,255,0.7)"
                :collapse="isCollapse">
         <sidebar-item :menu="menu"
+                      first
                       :props="website.menu.props"
                       :collapse="isCollapse"></sidebar-item>
       </el-menu>

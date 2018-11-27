@@ -1,4 +1,4 @@
-<h1 align="center">Avue</h1>
+<h1 align="center">Avue-cli</h1>
 
 <div align="center">
 
